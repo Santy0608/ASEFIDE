@@ -111,7 +111,7 @@ The system supports two distinct roles with separate portals and permissions:
 - Views for data abstraction and role-based visibility
 - Logical deletion architecture managed via States module
 
-*(Attach ERD diagram here)*
+<img width="2050" height="2288" alt="Diagrama Proyecto Final drawio (1)" src="https://github.com/user-attachments/assets/c8107bdc-4df0-480e-96b2-e1eea1de0c94" />
 
 ---
 
