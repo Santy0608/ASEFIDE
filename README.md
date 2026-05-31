@@ -154,31 +154,35 @@ ng serve
 
 📹 **Full System Demo** — *(coming soon)*
 
-*(Attach screenshots here)*
-
----
 
 ## 📸 Screenshots
 
-### Analytics Dashboard
+### Login
+<img width="1897" height="913" alt="ASEFIDE Login" src="https://github.com/user-attachments/assets/a08a845a-33b9-4785-b92a-c88b798e5777" />
 
+### Home
+<img width="1871" height="912" alt="ASEFIDE Home" src="https://github.com/user-attachments/assets/6fd89e24-73da-40bb-bc55-8d8503d565a1" />
+
+### Analytics Dashboard
+<img width="1891" height="911" alt="ASEFIDE Dashboard" src="https://github.com/user-attachments/assets/9223277b-79a5-4d67-b32e-2f4801e8738c" />
 
 ### Loans Module
-
+<img width="1878" height="917" alt="ASEFIDE Loan" src="https://github.com/user-attachments/assets/a273a4c0-233b-4d0f-b870-ca6a42c08ee4" />
 
 ### Associate Portal
-
+<img width="1902" height="917" alt="ASEFIDE Associate Portal" src="https://github.com/user-attachments/assets/135580f1-e6ac-4fe8-b7ff-df2f5ea21a04" />
 
 ### Chatbot FIDE — ADMIN Mode
-
+<img width="363" height="552" alt="ASEFIDE Chatbot" src="https://github.com/user-attachments/assets/9fe017c5-6277-454e-86f6-958570532d49" />
 
 ### Chatbot FIDE — ASSOCIATE Mode
-
+<img width="363" height="550" alt="ASEFIDE Chatbot Associate" src="https://github.com/user-attachments/assets/9482499c-2a60-4744-a012-63856cc29766" />
 
 ### PDF Reports
+<img width="1393" height="865" alt="ASEFIDE Report PDF" src="https://github.com/user-attachments/assets/cb2a673b-eb65-4801-981e-42616eba7213" />
 
-
-### Database ERD
+### USsers Module
+<img width="1882" height="908" alt="ASEFIDE Users Module" src="https://github.com/user-attachments/assets/f0a9f365-d917-4248-9973-e11bb6786388" />
 
 ---
 
