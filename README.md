@@ -115,6 +115,12 @@ The system supports two distinct roles with separate portals and permissions:
 
 ---
 
+## 🏛️ System Architecture
+
+<img width="1283" height="1181" alt="Diagrama de Arquitectura ASEFIDE drawio" src="https://github.com/user-attachments/assets/c72a5ddb-bee2-46f0-bfdd-7fb95cd37e74" />
+
+---
+
 ## 🔒 Security
 
 - Spring Security with JWT authentication
