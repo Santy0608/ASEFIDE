@@ -11,8 +11,8 @@ A complete enterprise management system built for a solidarity association, feat
 
 | Component | Repository |
 |---|---|
-| 🖥️ Frontend | *(link al repo frontend)* |
-| ⚙️ Backend | *(link al repo backend)* |
+| 🖥️ Frontend | https://github.com/Santy0608/Frontend-App-ASEFIDE
+| ⚙️ Backend | https://github.com/Santy0608/Backend-App-ASEFIDE-
 
 ---
 
