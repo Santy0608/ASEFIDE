@@ -152,7 +152,7 @@ ng serve
 
 ## 📹 Demo
 
-📹 **Full System Demo** — *(coming soon)*
+📹 **Full System Demonstration** https://www.youtube.com/watch?v=-QvlpeK8QYg
 
 
 ## 📸 Screenshots
