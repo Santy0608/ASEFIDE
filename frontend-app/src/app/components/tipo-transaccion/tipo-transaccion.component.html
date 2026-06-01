@@ -1,0 +1,105 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <span class="current">Tipos de Transacciones</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M17 1l4 4-4 4"/>
+        <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+        <path d="M7 23l-4-4 4-4"/>
+        <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+      </svg>
+      Gestión de Tipos Transacciones
+    </div>
+    <div class="page-subtitle">Administración y clasificación de flujos financieros para el inventario.</div>
+  </div>
+  <a [routerLink]="['/app/tipos-transacciones/registrar-tipo-transaccion']" class="btn-new">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    Nuevo Tipo de Transacción
+  </a>
+</div>
+
+<div class="search-bar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+  <input type="text" [(ngModel)]="nombreTipoTransaccionBuscar"
+         placeholder="Buscar tipo transaccion por nombre..."
+         (keydown.enter)="buscarTipoTransaccion()">
+  <button class="btn-clear" (click)="limpiarBusqueda()">
+    Limpiar
+  </button>
+  <button class="btn-search" (click)="buscarTipoTransaccion()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    Buscar
+  </button>
+</div>
+
+@if (tiposTransacciones.length > 0) {
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del Tipo</th>
+          <th>Descripción</th>
+          <th class="text-center">Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (tipo of tiposTransacciones; track $index) {
+          <tr>
+            <td>
+              <div class="nombre-cell">{{ tipo.nombre }}</div>
+             <!-- <small class="text-muted">ID: #{{ tipo.idTipoTransaccion }}</small> -->
+            </td>
+            <td>
+              <div class="text-muted text-sm">{{ tipo.descripcion }}</div>
+            </td>
+            <td class="text-center">
+              <span class="badge" [ngClass]="tipo.nombreEstado === 'ACTIVO' ? 'badge-active' : 'badge-inactive'">
+                <span class="badge-dot"></span>{{ tipo.nombreEstado }}
+              </span>
+            </td>
+            <td>
+              <div class="actions">
+                <button class="btn-action btn-edit" title="Editar" (click)="OnSelectedTipoTransaccion(tipo)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </button>
+                <button class="btn-action btn-delete" title="Eliminar" (click)="eliminarTipoTransaccion(tipo.idTipoTransaccion)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="table-footer">{{ tiposTransacciones.length }} categorías de transacción configuradas</div>
+    <app-paginator [paginator]="paginator" [url]="'/app/tipos-transacciones/page'"/>
+  </div>
+} @else {
+  <div class="empty-state">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/>
+      <line x1="1" y1="1" x2="23" y2="23"/>
+    </svg>
+    <p>No hay registros de tipos de transacciones en el sistema.</p>
+  </div>
+}

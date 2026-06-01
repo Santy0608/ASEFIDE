@@ -1,0 +1,75 @@
+<!-- registrar-direccion.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/direcciones">Direcciones</a>
+  <span class="sep">›</span>
+  <span class="current">{{ direccion.idDireccion > 0 ? 'Editar Dirección' : 'Crear Dirección' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+    {{ direccion.idDireccion > 0 ? 'Editar Dirección' : 'Crear Dirección' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ direccion.idDireccion > 0 ? 'actualizar la' : 'registrar una nueva' }} dirección en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(direccionForm)" #direccionForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos de la Dirección</span>
+      </div>
+
+      <input type="hidden" name="idDireccion" [(ngModel)]="direccion.idDireccion">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Provincia <span class="req">*</span></label>
+          <input name="provincia" [(ngModel)]="direccion.provincia"
+                 type="text" placeholder="Ej. San José" required>
+        </div>
+        <div class="field">
+          <label>Cantón <span class="req">*</span></label>
+          <input name="canton" [(ngModel)]="direccion.canton"
+                 type="text" placeholder="Ej. Desamparados" required>
+        </div>
+        <div class="field">
+          <label>Distrito <span class="req">*</span></label>
+          <input name="distrito" [(ngModel)]="direccion.distrito"
+                 type="text" placeholder="Ej. San Miguel" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/direcciones']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="direccionForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ direccion.idDireccion > 0 ? 'Guardar Cambios' : 'Crear Dirección' }}
+      </button>
+    </div>
+
+  </div>
+</form>

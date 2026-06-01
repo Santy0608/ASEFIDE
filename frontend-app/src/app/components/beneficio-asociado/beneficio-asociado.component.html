@@ -1,0 +1,56 @@
+<!-- beneficios-asociado.component.html -->
+<div class="beneficios-page">
+ 
+  <!-- Hero banner -->
+  <div class="hero-banner">
+    <img src="assets/images/Beneficios.png" alt="Beneficios" class="hero-img">
+    <div class="hero-overlay"></div>
+  </div>
+ 
+  <!-- Encabezado -->
+  <div class="section-header">
+    <h1 class="section-title">Beneficios</h1>
+    <p class="section-desc">
+      Disfrutá de los beneficios que ASEFIDE tiene para vos. Con nuestro increíble catálogo,
+      podrás disfrutar más allá de solo aportar tu porcentaje como obrero.
+    </p>
+  </div>
+ 
+  <!-- Loading -->
+  <div class="loading-state" *ngIf="cargando">
+    <div class="spinner"></div>
+    <span>Cargando beneficios...</span>
+  </div>
+ 
+
+  <!-- Grid de beneficios -->
+  <div class="beneficios-grid" *ngIf="!cargando">
+    <div
+      class="beneficio-card"
+      *ngFor="let beneficio of beneficios"
+      (click)="verDetalle(beneficio)">
+ 
+      <div class="card-img-wrap">
+        <img
+          [src]="beneficio.imagenUrl"
+          class="card-img">
+        <div class="card-img-overlay"></div>
+      </div>
+ 
+      <div class="card-body">
+        <h3 class="card-title">{{ beneficio.nombreBeneficio }}</h3>
+        <p class="card-desc">{{ beneficio.descripcion }}</p>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- Sin resultados -->
+  <div class="empty-state" *ngIf="!cargando && beneficios.length === 0">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 21C12 21 3 14 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-9 13-9 13z"/>
+    </svg>
+    <p>No hay beneficios disponibles por el momento.</p>
+  </div>
+ 
+</div>

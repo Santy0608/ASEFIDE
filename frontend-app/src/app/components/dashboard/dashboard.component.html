@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <div class="row g-4">
+
+    <div class="col-md-3">
+      <div class="card kpi-card shadow-sm border-0">
+        <div class="card-body p-2">
+          <div class="kpi-icon">
+            <i class="bi bi-people-fill"></i> </div>
+          <h6 class="kpi-title">Asociados Activos</h6>
+          <h3 class="kpi-value">{{ kpis?.totalAsociadosActivos }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card kpi-card shadow-sm border-0">
+        <div class="card-body p-2">
+          <div class="kpi-icon">
+            <i class="bi bi-piggy-bank-fill"></i>
+          </div>
+          <h6 class="kpi-title">Ahorros Totales</h6>
+          <h3 class="kpi-value text-primary-emphasis">{{ kpis?.totalAhorros | currency }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card kpi-card shadow-sm border-0">
+        <div class="card-body p-2">
+          <div class="kpi-icon" style="background: #FFF0F0; color: #E24B4A;"> <i class="bi bi-cash-stack"></i>
+          </div>
+          <h6 class="kpi-title">Préstamos Pendientes</h6>
+          <h3 class="kpi-value">{{ kpis?.totalPrestamosPendientes }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card kpi-card shadow-sm border-0">
+        <div class="card-body p-2">
+          <div class="kpi-icon">
+            <i class="bi bi-arrow-left-right"></i>
+          </div>
+          <h6 class="kpi-title">Transacciones Mes</h6>
+          <h3 class="kpi-value">{{ kpis?.transaccionesMesActual }}</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<br/>
+<br/>
+

@@ -1,0 +1,106 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <span class="current">Lugares Eventos</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 21h18"/>
+        <path d="M9 8h1"/>
+        <path d="M9 12h1"/>
+        <path d="M9 16h1"/>
+        <path d="M14 8h1"/>
+        <path d="M14 12h1"/>
+        <path d="M14 16h1"/>
+        <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>
+      </svg>
+      Gestión de Lugares Eventos
+    </div>
+    <div class="page-subtitle">Administración y clasificación de lugares de eventos para el inventario.</div>
+  </div>
+  <a [routerLink]="['/app/lugares-eventos/insertar-lugar-evento']" class="btn-new">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    Nuevo Lugar
+  </a>
+</div>
+
+<div class="search-bar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+  <input type="text" [(ngModel)]="nombreLugarEventoBuscar"
+         placeholder="Buscar Lugar Evento por nombre..."
+         (keydown.enter)="buscarLugarEvento()">
+  <button class="btn-clear" (click)="limpiarBusqueda()">
+    Limpiar
+  </button>
+  <button class="btn-search" (click)="buscarLugarEvento()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    Buscar
+  </button>
+</div>
+
+
+@if (lugaresEventos.length > 0) {
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del Lugar</th>
+          <th class="text-center">Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (lugarEvento of lugaresEventos; track $index) {
+          <tr>
+            <td>
+              <div class="nombre-cell">{{ lugarEvento.nombreLugar }}</div>
+            </td>
+            <td class="text-center">
+                <span class="badge" [ngClass]="lugarEvento.nombreEstado === 'ACTIVO' ? 'badge-active' : 'badge-inactive'">
+                  <span class="badge-dot"></span>{{ lugarEvento.nombreEstado }}
+                </span>
+            </td>
+            <td>
+              <div class="actions">
+                <button class="btn-action btn-edit" title="Editar" (click)="OnSelectedLugarEvento(lugarEvento)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </button>
+                <button class="btn-action btn-delete" title="Eliminar" (click)="eliminarLugarEvento(lugarEvento.idLugarEvento)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="table-footer">{{ lugaresEventos.length }} sedes registradas</div>
+    <app-paginator [paginator]="paginator" [url]="'/app/lugares-eventos/page'"/>
+  </div>
+} @else {
+  <div class="empty-state">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M3 21h18"/>
+      <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>
+      <line x1="1" y1="1" x2="23" y2="23"/>
+    </svg>
+    <p>No hay registros de lugares de eventos en el sistema.</p>
+  </div>
+}

@@ -1,0 +1,111 @@
+<!-- registrar-inscripcion-actividad.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/inscripciones-actividades">Inscripciones</a>
+  <span class="sep">›</span>
+  <span class="current">{{ inscripcionActividad.idInscripcion > 0 ? 'Editar Inscripción' : 'Crear Inscripción' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+      <rect x="8" y="2" width="8" height="4" rx="1"/>
+      <path d="M9 14l2 2 4-4"/>
+    </svg>
+    {{ inscripcionActividad.idInscripcion > 0 ? 'Editar Inscripción' : 'Crear Inscripción' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ inscripcionActividad.idInscripcion > 0 ? 'actualizar la' : 'registrar una nueva' }} inscripción a una actividad.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(inscripcionForm)" #inscripcionForm="ngForm">
+  <div class="form-card">
+
+    <!-- Datos de la Inscripción -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos de la Inscripción</span>
+      </div>
+
+      <input type="hidden" name="idInscripcion" [(ngModel)]="inscripcionActividad.idInscripcion">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Fecha de Inscripción <span class="req">*</span></label>
+          <input name="fechaInscripcion" [(ngModel)]="inscripcionActividad.fechaInscripcion"
+                 type="date" required>
+        </div>
+        <div class="field toggle-field">
+          <label>Asistencia</label>
+          <div class="toggle-wrap" (click)="inscripcionActividad.asistenciaConfirmada = !inscripcionActividad.asistenciaConfirmada">
+            <div class="toggle-track" [class.on]="inscripcionActividad.asistenciaConfirmada">
+              <div class="toggle-thumb"></div>
+            </div>
+            <div>
+              <div class="toggle-label">{{ inscripcionActividad.asistenciaConfirmada ? 'Confirmada' : 'No confirmada' }}</div>
+              <div class="toggle-sub">Toque para {{ inscripcionActividad.asistenciaConfirmada ? 'cancelar' : 'confirmar' }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actividad y Usuario -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="8" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5"/>
+            <circle cx="17" cy="9" r="2.5"/><path d="M22 20c0-2.5-2-4-5-4"/>
+          </svg>
+        </div>
+        <span class="section-title">Actividad y Usuario</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Actividad <span class="req">*</span></label>
+          <ng-select [items]="actividades" bindLabel="nombre" bindValue="idActividad"
+                     placeholder="Seleccione una actividad" [(ngModel)]="inscripcionActividad.actividadId"
+                     name="actividadId" [searchable]="true" required>
+          </ng-select>
+        </div>
+        <div class="field">
+          <label>Usuario</label>
+          <ng-select [items]="usuarios" bindLabel="nombreCompleto" bindValue="idUsuario"
+                     placeholder="Seleccione un usuario" [(ngModel)]="inscripcionActividad.usuarioId"
+                     name="usuarioId" [searchable]="true" [virtualScroll]="true" [bufferAmount]="10">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="form-footer">
+      <a [routerLink]="['/app/inscripciones-actividades']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="inscripcionForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ inscripcionActividad.idInscripcion > 0 ? 'Guardar Cambios' : 'Crear Inscripción' }}
+      </button>
+    </div>
+
+  </div>
+</form>

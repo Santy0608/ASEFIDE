@@ -1,0 +1,61 @@
+<!-- registrar-rol.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/roles">Roles</a>
+  <span class="sep">›</span>
+  <span class="current">{{ rol.idRol > 0 ? 'Editar Rol' : 'Crear Rol' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+    {{ rol.idRol > 0 ? 'Editar Rol' : 'Crear Rol' }}
+  </div>
+  <div class="page-subtitle">
+    Complete el campo para {{ rol.idRol > 0 ? 'actualizar el' : 'registrar un nuevo' }} rol en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(rolForm)" #rolForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos del Rol</span>
+      </div>
+
+      <input type="hidden" name="idRol" [(ngModel)]="rol.idRol">
+
+      <div class="field">
+        <label>Nombre del Rol <span class="req">*</span></label>
+        <input name="nombreRol" [(ngModel)]="rol.nombreRol"
+               type="text" placeholder="Ej. Administrador" required>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/roles']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="rolForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ rol.idRol > 0 ? 'Guardar Cambios' : 'Crear Rol' }}
+      </button>
+    </div>
+
+  </div>
+</form>

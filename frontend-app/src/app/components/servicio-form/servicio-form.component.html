@@ -1,0 +1,134 @@
+<!-- registrar-servicio.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/servicios">Servicios</a>
+  <span class="sep">›</span>
+  <span class="current">{{ servicio.idServicio > 0 ? 'Editar Servicio' : 'Crear Servicio' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="7" width="20" height="14" rx="2"/>
+      <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/>
+      <line x1="12" y1="12" x2="12" y2="17"/>
+      <line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/>
+    </svg>
+    {{ servicio.idServicio > 0 ? 'Editar Servicio' : 'Crear Servicio' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ servicio.idServicio > 0 ? 'actualizar el' : 'registrar un nuevo' }} servicio en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(servicioForm)" #servicioForm="ngForm">
+  <div class="form-card">
+
+    <!-- Información del Servicio -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/>
+          </svg>
+        </div>
+        <span class="section-title">Información del Servicio</span>
+      </div>
+
+      <input type="hidden" name="idServicio" [(ngModel)]="servicio.idServicio">
+
+      <div class="fields-grid">
+        <div class="field field-full">
+          <label>Nombre del Servicio <span class="req">*</span></label>
+          <input name="nombreServicio" [(ngModel)]="servicio.nombreServicio"
+                 type="text" placeholder="Ej. Asesoría Financiera" required>
+        </div>
+        <div class="field field-full">
+          <label>Descripción <span class="req">*</span></label>
+          <textarea name="descripcion" [(ngModel)]="servicio.descripcion"
+                    placeholder="Describa brevemente el servicio..." required></textarea>
+        </div>
+        <div class="field field-full">
+          <label>Imagen URL <span class="req">*</span> </label>
+          <input name="imagenUrl" [(ngModel)]="servicio.imagenUrl"
+                 type="text" placeholder="Url de la imagen">
+        </div>
+      </div>
+    </div>
+
+    <!-- Valores del Servicio -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+          </svg>
+        </div>
+        <span class="section-title">Valores del Servicio</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Valor Estimado <span class="req">*</span></label>
+          <div class="input-suffix">
+            <input name="valorEstimado" [(ngModel)]="servicio.valorEstimado"
+                   type="number" placeholder="Ej. 15000" required>
+            <span class="suffix">₡</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Stock <span class="req">*</span></label>
+          <div class="input-suffix">
+            <input name="stock" [(ngModel)]="servicio.stock"
+                   type="number" placeholder="Ej. 50" required>
+            <span class="suffix">uds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clasificación -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h8m-8 6h16"/>
+          </svg>
+        </div>
+        <span class="section-title">Clasificación</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field field-full">
+          <label>Categoría <span class="req">*</span></label>
+          <ng-select [items]="categorias" bindLabel="nombre" bindValue="idCategoria"
+                     placeholder="Seleccione una categoría" [(ngModel)]="servicio.categoriaId"
+                     name="categoriaId" [searchable]="true" required>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/servicios']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="servicioForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ servicio.idServicio > 0 ? 'Guardar Cambios' : 'Crear Servicio' }}
+      </button>
+    </div>
+
+  </div>
+</form>
+
+

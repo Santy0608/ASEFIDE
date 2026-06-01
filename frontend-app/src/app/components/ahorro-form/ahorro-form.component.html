@@ -1,0 +1,110 @@
+<!-- registrar-cuenta-ahorro.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/cuentas-ahorros">Cuentas Ahorro</a>
+  <span class="sep">›</span>
+  <span class="current">{{ cuentaAhorro.idAhorro > 0 ? 'Editar Cuenta Ahorro' : 'Crear Cuenta Ahorro' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="5" width="20" height="14" rx="2"/>
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M2 10h20"/>
+    </svg>
+    {{ cuentaAhorro.idAhorro > 0 ? 'Editar Cuenta Ahorro' : 'Crear Cuenta Ahorro' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ cuentaAhorro.idAhorro > 0 ? 'actualizar la' : 'registrar una nueva' }} cuenta de ahorro.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(cuentaAhorroForm)" #cuentaAhorroForm="ngForm">
+  <div class="form-card">
+
+    <!-- Datos de la Cuenta -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M2 10h20"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos de la Cuenta</span>
+      </div>
+
+      <input type="hidden" name="idAhorro" [(ngModel)]="cuentaAhorro.idAhorro">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Monto Aporte <span class="req">*</span></label>
+          <input name="montoAporte" [(ngModel)]="cuentaAhorro.montoAporte"
+                 type="number" placeholder="Ej. 25000" required>
+        </div>
+        <div class="field">
+          <label>Fecha Apertura <span class="req">*</span></label>
+          <input name="fechaApertura" [(ngModel)]="cuentaAhorro.fechaApertura"
+                 type="date" required>
+        </div>
+        <div class="field" *ngIf="cuentaAhorro.idAhorro > 0">
+          <label>Saldo Actual <span class="req">*</span></label>
+          <input name="saldoActual" [(ngModel)]="cuentaAhorro.saldoActual"
+                 type="number" placeholder="Ej. 150000" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clasificación y Responsable -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <span class="section-title">Clasificación y Responsable</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Tipo de Ahorro <span class="req">*</span></label>
+          <ng-select [items]="tiposAhorros" bindLabel="nombre" bindValue="idTipoAhorro"
+                     placeholder="Seleccione un tipo" [(ngModel)]="cuentaAhorro.tipoAhorroId"
+                     name="tipoAhorroId" [searchable]="true" required>
+          </ng-select>
+        </div>
+        <div class="field">
+          <label>Usuario</label>
+          <ng-select [items]="usuarios" bindLabel="nombreCompleto" bindValue="idUsuario"
+                     placeholder="Seleccione un usuario" [(ngModel)]="cuentaAhorro.usuarioId"
+                     name="usuarioId" [searchable]="true" [virtualScroll]="true" [bufferAmount]="10">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="form-footer">
+      <a [routerLink]="['/app/cuentas-ahorros']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="cuentaAhorroForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ cuentaAhorro.idAhorro > 0 ? 'Guardar Cambios' : 'Crear Cuenta Ahorro' }}
+      </button>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,63 @@
+<!-- registrar-estado.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/estados">Estados</a>
+  <span class="sep">›</span>
+  <span class="current">{{ estado.idEstado > 0 ? 'Editar Estado' : 'Crear Estado' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+    </svg>
+    {{ estado.idEstado > 0 ? 'Editar Estado' : 'Crear Estado' }}
+  </div>
+  <div class="page-subtitle">
+    Complete el campo para {{ estado.idEstado > 0 ? 'actualizar el' : 'registrar un nuevo' }} estado en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(estadoForm)" #estadoForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos del Estado</span>
+      </div>
+
+      <input type="hidden" name="idEstado" [(ngModel)]="estado.idEstado">
+
+      <div class="field">
+        <label>Nombre del Estado <span class="req">*</span></label>
+        <input name="nombre" [(ngModel)]="estado.nombre" #name="ngModel"
+               type="text" placeholder="Ej. Activo" required>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/estados']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="estadoForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ estado.idEstado > 0 ? 'Guardar Cambios' : 'Crear Estado' }}
+      </button>
+    </div>
+
+  </div>
+</form>

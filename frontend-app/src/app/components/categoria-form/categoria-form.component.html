@@ -1,0 +1,68 @@
+<!-- registrar-categoria.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/categorias">Categorías</a>
+  <span class="sep">›</span>
+  <span class="current">{{ categoria.idCategoria > 0 ? 'Editar Categoría' : 'Crear Categoría' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 6h16M4 12h8m-8 6h16"/>
+    </svg>
+    {{ categoria.idCategoria > 0 ? 'Editar Categoría' : 'Crear Categoría' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ categoria.idCategoria > 0 ? 'actualizar la' : 'registrar una nueva' }} categoría en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(categoriaForm)" #categoriaForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h8m-8 6h16"/>
+          </svg>
+        </div>
+        <span class="section-title">Información de la Categoría</span>
+      </div>
+
+      <input type="hidden" name="idCategoria" [(ngModel)]="categoria.idCategoria">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Nombre de la Categoría <span class="req">*</span></label>
+          <input name="nombre" [(ngModel)]="categoria.nombre" #name="ngModel"
+                 type="text" placeholder="Ej. Salud" required>
+        </div>
+        <div class="field">
+          <label>Descripción</label>
+          <textarea name="descripcion" [(ngModel)]="categoria.descripcion"
+                    placeholder="Describa brevemente la categoría..." rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/categorias']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="categoriaForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ categoria.idCategoria > 0 ? 'Guardar Cambios' : 'Crear Categoría' }}
+      </button>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,81 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <span class="current">Detalle Transacción</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1z"/>
+        <path d="M16 8h-6"/>
+        <path d="M16 12h-6"/>
+        <path d="M16 16h-6"/>
+      </svg>
+      Gestión de Detalles de Transacciones
+    </div>
+    <div class="page-subtitle">Administración y clasificación de detalles de transacciones para de la asosiación.</div>
+  </div>
+  <a [routerLink]="['/app/detalle-transaccion/registrar-detalle-transaccion']" class="btn-new">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    Nuevo Detalle
+  </a>
+</div>
+
+@if (detallesTransacciones.length > 0) {
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+        <!--  <th>Id</th> -->
+          <th class="text-center">Fecha Transacción</th>
+          <th>Concepto</th>
+          <th class="text-end">SubTotal</th>
+       <!--   <th class="text-end">Monto Total</th> -->
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (detalle of detallesTransacciones; track $index) {
+          <tr>
+           <!-- <td class="id-cell">#{{ detalle.idDetalle | number:'2.0-0' }}</td> -->
+            <td class="text-center">{{ detalle.fechaTransaccion }}</td>
+            <td>
+              <div class="nombre-cell">{{ detalle.concepto }}</div>
+            </td>
+            <td class="text-end font-mono">
+              ₡{{ detalle.subTotal }}
+            </td>
+         <!--  <td class="text-end font-mono">
+              <strong class="amount-total">{{ detalle.montoTotalTransaccion | currency }}</strong>
+            </td> -->
+            <td>
+              <div class="actions">
+                <button class="btn-action btn-edit" title="Editar" (click)="OnSelectedDetalleTransaccion(detalle)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="table-footer">{{ detallesTransacciones.length }} detalles registrados en total</div>
+    <app-paginator [paginator]="paginator" [url]="'/app/detalle-transaccion/page'"/>
+  </div>
+} @else {
+  <div class="empty-state">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1z"/>
+      <line x1="9" y1="9" x2="15" y2="15"/>
+      <line x1="15" y1="9" x2="9" y2="15"/>
+    </svg>
+    <p>No hay registros de detalles de transacciones en el sistema.</p>
+  </div>
+}

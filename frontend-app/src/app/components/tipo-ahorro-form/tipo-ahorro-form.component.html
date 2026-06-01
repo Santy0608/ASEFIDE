@@ -1,0 +1,72 @@
+<!-- registrar-tipo-ahorro.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/tipos-ahorros">Tipos de Ahorro</a>
+  <span class="sep">›</span>
+  <span class="current">{{ tipoAhorro.idTipoAhorro > 0 ? 'Editar Tipo Ahorro' : 'Crear Tipo Ahorro' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="5" width="20" height="14" rx="2"/>
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M2 10h20"/>
+    </svg>
+    {{ tipoAhorro.idTipoAhorro > 0 ? 'Editar Tipo Ahorro' : 'Crear Tipo Ahorro' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ tipoAhorro.idTipoAhorro > 0 ? 'actualizar el' : 'registrar un nuevo' }} tipo de ahorro.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(tipoAhorroForm)" #tipoAhorroForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M2 10h20"/>
+          </svg>
+        </div>
+        <span class="section-title">Información del Tipo de Ahorro</span>
+      </div>
+
+      <input type="hidden" name="idTipoAhorro" [(ngModel)]="tipoAhorro.idTipoAhorro">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Nombre del Tipo de Ahorro <span class="req">*</span></label>
+          <input name="nombre" [(ngModel)]="tipoAhorro.nombre" #name="ngModel"
+                 type="text" placeholder="Ej. Ahorro Voluntario" required>
+        </div>
+        <div class="field">
+          <label>Descripción</label>
+          <textarea name="descripcion" [(ngModel)]="tipoAhorro.descripcion"
+                    placeholder="Describa brevemente el tipo de ahorro..." rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/tipos-ahorros']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="tipoAhorroForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ tipoAhorro.idTipoAhorro > 0 ? 'Guardar Cambios' : 'Crear Tipo Ahorro' }}
+      </button>
+    </div>
+
+  </div>
+</form>

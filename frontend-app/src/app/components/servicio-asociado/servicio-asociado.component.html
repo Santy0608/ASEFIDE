@@ -1,0 +1,43 @@
+<div class="beneficios-page">
+
+    <div class="hero-banner">
+        <img src="assets/images/Servicios.png" alt="Servicios" class="hero-img">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="section-header">
+        <h1 class="section-title">Servicios</h1>
+        <p class="section-desc">
+            Disfrutá de los servicios que ASEFIDE tiene para vos. Con nuestro increíble catálogo,
+            podrás disfrutar más allá de solo aportar tu porcentaje como obrero.
+        </p>
+    </div>
+
+     <!-- Loading -->
+    <div class="loading-state" *ngIf="cargando">
+        <div class="spinner"></div>
+        <span>Cargando actividades...</span>
+    </div>
+
+    <div class="beneficios-grid" *ngIf="!cargando">
+  <div 
+    class="beneficio-card" 
+    *ngFor="let servicio of servicios" 
+    (click)="verDetalle(servicio)">
+
+    <div class="card-img-wrap">
+      <img [src]="servicio.imagenUrl" class="card-img">
+      <div class="card-img-overlay"></div>
+    </div>
+
+    <div class="card-body">
+      <h3 class="card-title">{{ servicio.nombreServicio }}</h3>
+      <p><strong>Valor Estimado:</strong> ₡{{ servicio.valorEstimado }}</p>
+      <p><strong>Stock:</strong> {{ servicio.stock }}</p>
+      <p class="card-desc">{{ servicio.descripcion }}</p>
+    </div>
+
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,92 @@
+<!-- registrar-resultado-reporte.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/resultados-reporte">Resultados Reporte</a>
+  <span class="sep">›</span>
+  <span class="current">{{ resultadoReporte.idResultado > 0 ? 'Editar Resultado Reporte' : 'Crear Resultado Reporte' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </svg>
+    {{ resultadoReporte.idResultado > 0 ? 'Editar Resultado Reporte' : 'Crear Resultado Reporte' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ resultadoReporte.idResultado > 0 ? 'actualizar el' : 'registrar un nuevo' }} resultado de reporte.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(resultadoReporteForm)" #resultadoReporteForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos de la Métrica</span>
+      </div>
+
+      <input type="hidden" name="idResultado" [(ngModel)]="resultadoReporte.idResultado">
+
+      <div class="fields-grid">
+        <div class="field field-full">
+          <label>Nombre de la Métrica <span class="req">*</span></label>
+          <input name="metricaNombre" [(ngModel)]="resultadoReporte.metricaNombre"
+                 type="text" placeholder="Ej. Total de Transacciones" required>
+        </div>
+        <div class="field field-full">
+          <label>Valor de la Métrica <span class="req">*</span></label>
+          <input name="metricaValor" [(ngModel)]="resultadoReporte.metricaValor"
+                 type="text" placeholder="Ej. ₡1,250,000" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <span class="section-title">Reporte Asociado</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field field-full">
+          <label>Reporte <span class="req">*</span></label>
+          <ng-select [items]="reportes" bindLabel="totalRegistros" bindValue="idReporte"
+                     placeholder="Seleccione un reporte" [(ngModel)]="resultadoReporte.reporteId"
+                     name="reporteId" [searchable]="true" required>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/resultados-reporte']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="resultadoReporteForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ resultadoReporte.idResultado > 0 ? 'Guardar Cambios' : 'Crear Resultado Reporte' }}
+      </button>
+    </div>
+
+  </div>
+</form>

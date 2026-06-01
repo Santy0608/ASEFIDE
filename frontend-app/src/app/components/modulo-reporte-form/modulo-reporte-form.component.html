@@ -1,0 +1,68 @@
+<!-- registrar-modulo-reporte.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/modulo-reporte">Módulo Reporte</a>
+  <span class="sep">›</span>
+  <span class="current">{{ moduloReporte.idModulo > 0 ? 'Editar Módulo Reporte' : 'Crear Módulo Reporte' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </svg>
+    {{ moduloReporte.idModulo > 0 ? 'Editar Módulo Reporte' : 'Crear Módulo Reporte' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ moduloReporte.idModulo > 0 ? 'actualizar el' : 'registrar un nuevo' }} módulo de reporte.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(moduloReporteForm)" #moduloReporteForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <span class="section-title">Información del Módulo</span>
+      </div>
+
+      <input type="hidden" name="idModulo" [(ngModel)]="moduloReporte.idModulo">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Nombre del Módulo Reporte <span class="req">*</span></label>
+          <input name="nombre" [(ngModel)]="moduloReporte.nombre" #name="ngModel"
+                 type="text" placeholder="Ej. Reporte de Transacciones" required>
+        </div>
+        <div class="field">
+          <label>Descripción</label>
+          <textarea name="descripcion" [(ngModel)]="moduloReporte.descripcion"
+                    placeholder="Describa brevemente el módulo de reporte..." rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/modulo-reporte']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="moduloReporteForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ moduloReporte.idModulo > 0 ? 'Guardar Cambios' : 'Crear Módulo Reporte' }}
+      </button>
+    </div>
+
+  </div>
+</form>

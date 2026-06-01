@@ -1,0 +1,70 @@
+<!-- registrar-tipo-transaccion.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/tipos-transacciones">Tipos de Transacción</a>
+  <span class="sep">›</span>
+  <span class="current">{{ tipoTransaccion.idTipoTransaccion > 0 ? 'Editar Tipo Transacción' : 'Crear Tipo Transacción' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M7 16l-4-4 4-4M17 8l4 4-4 4"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+    </svg>
+    {{ tipoTransaccion.idTipoTransaccion > 0 ? 'Editar Tipo Transacción' : 'Crear Tipo Transacción' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ tipoTransaccion.idTipoTransaccion > 0 ? 'actualizar el' : 'registrar un nuevo' }} tipo de transacción.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(tipoTransaccionForm)" #tipoTransaccionForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 16l-4-4 4-4M17 8l4 4-4 4"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+          </svg>
+        </div>
+        <span class="section-title">Información del Tipo de Transacción</span>
+      </div>
+
+      <input type="hidden" name="idTipoTransaccion" [(ngModel)]="tipoTransaccion.idTipoTransaccion">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Nombre del Tipo de Transacción <span class="req">*</span></label>
+          <input name="nombre" [(ngModel)]="tipoTransaccion.nombre" #name="ngModel"
+                 type="text" placeholder="Ej. Depósito" required>
+        </div>
+        <div class="field">
+          <label>Descripción</label>
+          <textarea name="descripcion" [(ngModel)]="tipoTransaccion.descripcion"
+                    placeholder="Describa brevemente el tipo de transacción..." rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/tipos-transacciones']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="tipoTransaccionForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ tipoTransaccion.idTipoTransaccion > 0 ? 'Guardar Cambios' : 'Crear Tipo Transacción' }}
+      </button>
+    </div>
+
+  </div>
+</form>

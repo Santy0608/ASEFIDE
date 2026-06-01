@@ -1,0 +1,268 @@
+@if (admin){
+<div class="home-wrapper">
+
+  <div class="home-header">
+    <div>
+      <p class="greeting-label">Panel principal</p>
+      <h1>Te damos la bienvenida, {{ login.usuario?.nombreUsuario }}</h1>
+    </div>
+  <!--  <span class="badge-date">{{ hoy | date:"EEEE, d 'de' MMMM yyyy" : '' : 'es' }}</span> -->
+  </div>
+ <!-- <pre>{{ authService.usuario | json }}</pre> -->
+  <div class="modules-grid">
+    <div class="module-card" *ngFor="let mod of modules" [ngClass]="mod.color">
+      <div class="top-stripe"></div>
+      <div class="card-img-wrap">
+        <img [src]="mod.img" [alt]="mod.title" class="card-img">
+        <div class="img-overlay"></div>
+        <span class="card-tag">{{ mod.tag }}</span>
+      </div>
+      <div class="card-body">
+        <h3>{{ mod.title }}</h3>
+        <p>{{ mod.desc }}</p>
+        <a [routerLink]="[mod.route]" class="module-link">Ir al módulo →</a>
+      </div>
+    </div>
+  </div>
+  
+
+</div>
+}
+
+
+@if(asociado){
+  <div class="asociado-home">
+ 
+  <!-- Header bienvenida -->
+  <div class="home-header">
+    <div>
+      <p class="greeting-label">Panel principal</p>
+      <h1>Te damos la bienvenida, {{ login.usuario?.nombreUsuario }}</h1>
+    </div>
+  <!--  <span class="badge-date">{{ hoy | date:"EEEE, d 'de' MMMM yyyy" : '' : 'es' }}</span> -->
+  </div>
+ 
+  <!-- Tabs Aportes / Ahorros -->
+  <div class="tabs-section">
+    <div class="tabs-header">
+      <button
+        class="tab-btn"
+        [class.active]="tabActivo === 'aportes'"
+        (click)="tabActivo = 'aportes'">
+        Aportes
+      </button>
+      <button
+        class="tab-btn"
+        [class.active]="tabActivo === 'ahorros'"
+        (click)="tabActivo = 'ahorros'">
+        Ahorros
+      </button>
+      <button
+      class="tab-btn"
+      [class.active]="tabActivo === 'transacciones'"
+      (click)="tabActivo = 'transacciones'">
+        Transacciones 
+      </button>
+      <button
+      class="tab-btn"
+      [class.active]="tabActivo === 'prestamos'"
+      (click)="tabActivo = 'prestamos'">
+        Prestamos 
+      </button>
+      <button
+      class="tab-btn"
+      [class.active]="tabActivo === 'inscripciones'"
+      (click)="tabActivo = 'inscripciones'">
+        Inscripciones Actividades 
+      </button>
+    </div>
+ 
+    <!-- Tabla Aportes -->
+    <div class="table-wrapper" *ngIf="tabActivo === 'aportes'">
+      <table class="data-table">
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Monto</th>
+                  <th>Fecha Inicio</th>
+                  <th>Fecha Fin</th>
+                  <th>Estado</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of aportes">
+                  <td>{{ item.idAporte }}</td>
+                  <td>₡{{ item.monto | number:'1.2-2' }}</td>
+                  <td>{{ item.fechaInicio | date:'shortDate' }}</td>
+                  <td>{{ item.fechaFin ? (item.fechaFin | date:'shortDate') : 'Vigente' }}</td>
+                  <td>
+                      <span [class]="item.fechaFin ? 'badge-inactivo' : 'badge-activo'">
+                          {{ item.fechaFin ? 'Histórico' : 'Vigente' }}
+                      </span>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+
+      <!-- Paginación -->
+      <div class="pagination">
+          <button class="page-btn"
+                  *ngFor="let p of paginas"
+                  [class.active]="paginaActual === p"
+                  (click)="irPagina(p)">
+              {{ p }}
+          </button>
+          <button class="page-btn next" (click)="siguiente()">Siguiente</button>
+      </div>
+  </div>
+ 
+    <!-- Tabla Ahorros -->
+    <div class="table-wrapper" *ngIf="tabActivo === 'ahorros'">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre Completo</th>
+            <th>Nombre Usuario</th>
+            <th>Id Ahorro</th>
+            <th>Fecha Apertura</th>
+            <th>Monto Aporte</th>
+            <th>Saldo Actual</th>
+            <th>Tipo Ahorro</th>
+            <th>Estado Cuenta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ahorro of ahorrosUsuarios">
+            <td>{{ ahorro.nombreCompleto }}</td>
+            <td>{{ ahorro.nombreUsuario }}</td>
+            <td>{{ ahorro.idAhorro }}</td>
+            <td>{{ ahorro.fechaApertura | date:'dd/MM/yyyy' }}</td>
+            <td>₡{{ ahorro.montoAporte }}</td>
+            <td>₡{{ ahorro.saldoActual }}</td>
+            <td>{{ ahorro.tipoAhorro }}</td>
+            <td>
+              <span class="badge" [class.badge-active]="ahorro.estadoCuenta === 'ACTIVO'">
+                {{ ahorro.estadoCuenta }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tabla Transacciones -->
+     <div class="table-wrapper" *ngIf="tabActivo === 'transacciones'">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre Usuario</th>
+            <th>Tipo Transaccion</th>
+            <th>Monto</th>
+            <th>Fecha Transaccion</th>
+            <th>PDF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaccion of transaccionesUsuarios">
+            <td>{{ transaccion.nombreUsuario }}</td>
+            <td>{{ transaccion.tipoTransaccion }}</td>
+            <td>₡{{ transaccion.monto }}</td>
+            <td>{{ transaccion.fechaTransaccion | date:'dd/MM/yyyy' }}</td>
+            <td>
+                <button class="btn-pdf" (click)="descargarPDF()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="12" y1="18" x2="12" y2="12"/>
+                    <line x1="9" y1="15" x2="15" y2="15"/>
+                  </svg>
+                  Descargar PDF
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Prestamos Asociados -->
+     <div class="table-wrapper" *ngIf="tabActivo === 'prestamos'">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre Usuario</th>
+            <th>Monto Solicitado</th>
+            <th>Saldo Pendiente</th>
+            <th>Cuotas Pagadas</th>
+            <th>Proxima Fecha de Pago</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prestamo of prestamosUsuarios">
+            <td>{{ prestamo.nombreUsuario }}</td>
+            <td>{{ prestamo.montoSolicitado | currency }}</td>
+            <td>{{ prestamo.saldoPendiente | currency }}</td>
+            <td>{{ prestamo.cuotasPagadas }}</td>
+            <td>{{ prestamo.proximaFechaPago | date:'dd/MM/yyyy' }}</td>
+            <td>{{ prestamo.estado }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> 
+    <!-- Inscripciones Actividades Asociados -->
+     <div class="table-wrapper" *ngIf="tabActivo === 'inscripciones'">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre Actividad</th>
+            <th>Fecha Evento</th>
+            <th>Nombre Lugar</th>
+            <th>Estado Inscripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let inscripcion of inscripcionesActividadesUsuarios">
+            <td>{{ inscripcion.nombreActividad }}</td>
+            <td>{{ inscripcion.fechaEvento | date:'dd/MM/yyyy' }}</td>
+            <td>{{ inscripcion.nombreLugar }}</td>
+            <td>{{ inscripcion.estadoInscripcion }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> 
+  </div>
+ 
+  <!-- Sección cards -->
+  <div class="cards-section">
+    <h2 class="cards-title">¡Conocé lo que la asociación tiene para vos!</h2>
+    <div class="cards-grid">
+ 
+      <a [routerLink]="['/app/actividades-asociados']" class="feature-card">
+        <div class="card-img-wrap">
+          <img src="assets/images/Actividades.png" alt="Actividades">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-label">Actividades</div>
+      </a>
+ 
+      <a [routerLink]="['/app/beneficios-asociados']" class="feature-card">
+        <div class="card-img-wrap">
+          <img src="assets/images/Beneficios.png" alt="Beneficios">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-label">Beneficios</div>
+      </a>
+ 
+      <a [routerLink]="['/app/servicios-asociados']" class="feature-card">
+        <div class="card-img-wrap">
+          <img src="assets/images/Servicios.png" alt="Servicios">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-label">Servicios</div>
+      </a>
+ 
+    </div>
+  </div>
+ 
+</div>
+}

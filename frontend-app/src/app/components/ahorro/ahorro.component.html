@@ -1,0 +1,295 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <span class="current">Ahorros</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+      Gestión de Ahorros
+    </div>
+    <div class="page-subtitle">Administración y clasificación de ahorros de la asociación.</div>
+  </div>
+  <a [routerLink]="['/app/cuentas-ahorros/registrar-cuenta-ahorro']" class="btn-new">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    Nueva Cuenta
+  </a>
+</div>
+
+
+<div class="metrics-row">
+
+  <div class="metric-card">
+    <div class="metric-icon green">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+    </div>
+    <div>
+      <div class="metric-label">Total Ahorros</div>
+      <div class="metric-value green currency">
+        {{ totalAhorros | currency:'CRC':'symbol':'1.2-2' }}
+      </div>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <div class="metric-icon purple">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="5" width="20" height="14" rx="2"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </div>
+    <div>
+      <div class="metric-label">Promedio de Ahorros</div>
+      <div class="metric-value purple currency">
+        {{ promedioAhorros | currency:'CRC':'symbol':'1.2-2' }}
+      </div>
+    </div>
+  </div>
+
+ <!-- <div class="metric-card">
+    <div class="metric-icon teal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+        <polyline points="17 6 23 6 23 12"/>
+      </svg>
+    </div>
+    <div>
+      <div class="metric-label">Saldo Promedio</div>
+      <div class="metric-value">
+        {{ saldoPromedio | currency:'CRC':'symbol':'1.2-2' }}
+      </div>
+    </div>
+  </div> -->
+</div>
+
+<div class="filter-bar">
+  <div class="filter-input-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="1" x2="12" y2="23"/>
+      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </svg>
+    <input type="number" [(ngModel)]="montoFiltro"
+           placeholder="Filtrar por saldo mayor a... ej: 50000"
+           (keydown.enter)="filtrarPorMonto()"/>
+  </div>
+  <button class="btn-filter" (click)="filtrarPorMonto()"
+          [disabled]="!montoFiltro">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+    </svg>
+    Filtrar
+  </button>
+  <button class="btn-clear" (click)="limpiarFiltro()" *ngIf="filtrando">
+    Limpiar
+  </button>
+</div>
+
+@if (filtrando) {
+  <div class="search-result-label">
+    Cuentas con saldo mayor a
+    <strong>{{ montoFiltro | currency:'CRC':'symbol':'1.0-0' }}</strong>
+    <span class="result-badge">{{ ahorros.length }} resultado{{ ahorros.length !== 1 ? 's' : '' }}</span>
+  </div>
+}
+
+
+@if (ahorros.length > 0) {
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Tipo de Ahorro</th>
+          <th class="text-center">Monto Aporte</th>
+          <th class="text-center">Saldo Actual</th>
+          <th class="text-center">Apertura</th>
+          <th class="text-center">Estado</th>
+          <th style="padding-left: 3%;">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (ahorro of ahorros; track ahorro.idAhorro) {
+          <tr>
+            <td>
+              <div class="nombre-cell">{{ ahorro.nombreUsuario }}</div>
+            <!--  <small class="text-muted">ID: {{ ahorro.usuarioId }}</small> -->
+            </td>
+            <td>
+              <span class="type-tag">{{ ahorro.nombreTipoAhorro }}</span>
+            </td>
+            <td class="text-center font-mono">
+              ₡{{ ahorro.montoAporte }}
+            </td>
+            <td class="text-center font-mono">
+              <strong>₡{{ ahorro.saldoActual }}</strong>
+            </td>
+            <td class="text-center">
+              {{ ahorro.fechaApertura }}
+            </td>
+            <td class="text-center">
+              <span class="badge" [ngClass]="ahorro.nombreEstado === 'ACTIVO' ? 'badge-active' : 'badge-inactive'">
+                <span class="badge-dot"></span>{{ ahorro.nombreEstado }}
+              </span>
+            </td>
+            <td class="text-center">
+              <div class="actions">
+                <button class="btn-action btn-edit" title="Editar" (click)="OnSelectedCuentaAhorro(ahorro)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </button>
+                <button class="btn-action btn-delete" title="Eliminar" (click)="eliminarCuentaAhorro(ahorro.idAhorro)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                  </svg>
+                </button>
+
+                <button class="btn-action btn-report" title="Ver reporte de ahorros"
+                        (click)="verReporte(ahorro)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    
+    <div class="table-footer-container">
+      <div class="table-footer">{{ ahorros.length }} cuentas en total</div>
+      <app-paginator [paginator]="paginator" [url]="'/app/cuentas-ahorros/page'"/>
+    </div>
+  </div>
+} @else {
+  <div class="empty-state">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </svg>
+    <p>No hay registros de ahorros en el sistema.</p>
+  </div>
+}
+
+
+
+
+
+<div class="section-divider">
+  <span>Ranking de Ahorros</span>
+</div>
+
+<div class="tabs-bar">
+  <button class="tab-btn" [class.active]="tabActivo === 'mas'"
+          (click)="cambiarTab('mas')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+      <polyline points="17 6 23 6 23 12"/>
+    </svg>
+    Top 10 Más Ahorros
+  </button>
+  <button class="tab-btn" [class.active]="tabActivo === 'menos'"
+          (click)="cambiarTab('menos')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+      <polyline points="17 18 23 18 23 12"/>
+    </svg>
+    Top 10 Menos Ahorros
+  </button>
+</div>
+
+<div class="top10-grid">
+  @for (item of topAhorros; track $index) {
+    <div class="top5-card">
+      <div class="top5-rank">#{{ $index + 1 }}</div>
+      <div class="top5-avatar">{{ getInitials(item.nombreUsuario, item.apellidoPaterno) }}</div>
+      <div class="top5-info">
+        <div class="top5-name">{{ item.nombreUsuario }} {{ item.apellidoPaterno }}</div>
+        <div class="top5-count" [class.red]="tabActivo === 'menos'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          {{ item.totalAhorro | currency:'CRC':'symbol':'1.0-0' }}
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+@if (modalReporteVisible) {
+  <div class="custom-modal-overlay" (click)="cerrarModalReporte()">
+    <div class="custom-modal custom-modal--wide" (click)="$event.stopPropagation()">
+
+      <div class="custom-modal-header">
+        <div class="modal-header-left">
+          <div class="modal-header-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </div>
+          <div>
+            <div class="modal-title" style="color:white">Reporte de Ahorros</div>
+            <div class="modal-subtitle" style="color:white">{{ usuarioSeleccionado?.nombreUsuario }}</div>
+          </div>
+        </div>
+        <button class="btn-modal-close" (click)="cerrarModalReporte()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="custom-modal-body">
+        @if (cargandoReporte) {
+          <div class="loading-state">Cargando reporte...</div>
+        } @else if (reporteAhorros && reporteAhorros.length > 0) {
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>ID Cuenta</th>
+                <th class="text-end">Monto Aporte</th>
+                <th class="text-end">Saldo Actual</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of reporteAhorros; track $index) {
+                <tr>
+                  <td><span class="font-mono">#{{ item.idAhorro }}</span></td>
+                  <td class="text-end">{{ item.montoAporte | currency:'CRC':'symbol':'1.2-2' }}</td>
+                  <td class="text-end">
+                    <strong>{{ item.saldoActual | currency:'CRC':'symbol':'1.2-2' }}</strong>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <div class="empty-state-modal">No hay cuentas registradas para este usuario.</div>
+        }
+      </div>
+
+      <div class="custom-modal-footer">
+        <button class="btn-modal-close" (click)="cerrarModalReporte()">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+}

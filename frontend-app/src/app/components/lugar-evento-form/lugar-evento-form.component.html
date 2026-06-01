@@ -1,0 +1,63 @@
+<!-- registrar-lugar-evento.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/lugares-eventos">Lugares de Evento</a>
+  <span class="sep">›</span>
+  <span class="current">{{ lugarEvento.idLugarEvento > 0 ? 'Editar Lugar Evento' : 'Crear Lugar Evento' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+    {{ lugarEvento.idLugarEvento > 0 ? 'Editar Lugar Evento' : 'Crear Lugar Evento' }}
+  </div>
+  <div class="page-subtitle">
+    Complete el campo para {{ lugarEvento.idLugarEvento > 0 ? 'actualizar el' : 'registrar un nuevo' }} lugar de evento.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(lugarEventoForm)" #lugarEventoForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos del Lugar</span>
+      </div>
+
+      <input type="hidden" name="idLugarEvento" [(ngModel)]="lugarEvento.idLugarEvento">
+
+      <div class="field">
+        <label>Nombre del Lugar <span class="req">*</span></label>
+        <input name="nombreLugar" [(ngModel)]="lugarEvento.nombreLugar"
+               type="text" placeholder="Ej. Salón Comunal Central" required>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/lugares-eventos']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="lugarEventoForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ lugarEvento.idLugarEvento > 0 ? 'Guardar Cambios' : 'Crear Lugar Evento' }}
+      </button>
+    </div>
+
+  </div>
+</form>

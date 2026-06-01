@@ -1,0 +1,112 @@
+<!-- registrar-movimiento-ahorro.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/movimientos-ahorro">Movimientos Ahorro</a>
+  <span class="sep">›</span>
+  <span class="current">{{ movimiento.idMovimiento > 0 ? 'Editar Movimiento' : 'Nuevo Movimiento' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="5" width="20" height="14" rx="2"/>
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M2 10h20"/>
+    </svg>
+    {{ movimiento.idMovimiento > 0 ? 'Editar Movimiento' : 'Nuevo Movimiento' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ movimiento.idMovimiento > 0 ? 'actualizar el' : 'registrar un nuevo' }} movimiento de ahorro.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(movimientoForm)" #movimientoForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 16l-4-4 4-4M17 8l4 4-4 4"/><line x1="3" y1="12" x2="21" y2="12"/>
+          </svg>
+        </div>
+        <span class="section-title">Cuenta y Transacción</span>
+      </div>
+
+      <input type="hidden" name="idMovimiento" [(ngModel)]="movimiento.idMovimiento">
+
+      <div class="fields-grid">
+        <div class="field field-full">
+          <label>Cuenta Ahorro <span class="req">*</span></label>
+          <ng-select [items]="ahorros" bindLabel="descripcion" bindValue="idAhorro"
+                     placeholder="Seleccione una cuenta de ahorro"
+                     [(ngModel)]="movimiento.cuentasAhorroId" (change)="onCuentaAhorroChange(movimiento.cuentasAhorroId || 0)" name="cuentasAhorroId" required>
+          </ng-select>
+        </div>
+        <div class="field field-full">
+          <label>Transacción <span class="req">*</span></label>
+          <ng-select [items]="transaccionesFiltradas" bindLabel="descripcion" bindValue="idTransaccion"
+                     placeholder="Seleccione una transacción"
+                     [(ngModel)]="movimiento.transaccionId" name="transaccionId" required>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Tipo de Movimiento <span class="req">*</span></label>
+        <ng-select [items]="tiposMovimiento" 
+                  bindLabel="nombre" 
+                  bindValue="valor"
+                  placeholder="Seleccione tipo de movimiento"
+                  [(ngModel)]="movimiento.tipoMovimiento"
+                  name="tipoMovimiento" 
+                  required>
+        </ng-select>
+      </div>
+
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+          </svg>
+        </div>
+        <span class="section-title">Monto y Fecha</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Monto <span class="req">*</span></label>
+          <input name="monto" [(ngModel)]="movimiento.monto"
+                 type="number" placeholder="Ej. 25000.00" step="0.01" required>
+        </div>
+        <div class="field">
+          <label>Fecha Depósito <span class="req">*</span></label>
+          <input name="fechaDeposito" [(ngModel)]="movimiento.fechaDeposito"
+                 type="date" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/movimientos-ahorro']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="movimientoForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ movimiento.idMovimiento > 0 ? 'Guardar Cambios' : 'Guardar Movimiento' }}
+      </button>
+    </div>
+
+  </div>
+</form>

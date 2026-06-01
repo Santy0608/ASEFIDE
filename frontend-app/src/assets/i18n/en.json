@@ -1,0 +1,441 @@
+{
+    "Inicio": "Home",
+    "Habitaciones": "Rooms",
+    "Tours": "Tours",
+    "Nosotros": "About Us",
+    "Visitanos": "Visit Us",
+    "Hotel Sunrise Corcovado": "Hotel Sunrise Corcovado",
+    "Disfruta de una experiencia inolvidable con vistas espectaculares": "Enjoy an unforgettable experience with spectacular views",
+    "Visita Nuestro Hotel": "Visit Our Hotel",
+    "Disfruta de una experiencia inolvidable con una atención personalizada": "Enjoy an unforgettable experience with personalized attention",
+    "Aventura en Snorkel": "Snorkeling Adventure",
+    "Explora el mar y vive una experiencia única bajo el agua": "Explore the sea and live a unique underwater experience",
+    "Su Mejor Opción": "Your Best Choice",
+    "Ubicado en Bahía Drake, el paraíso te espera": "Located in Drake Bay, paradise awaits",
+    "Nuestras Habitaciones": "Our Rooms",
+    "Disfruta de una estancia cómoda y agradable en cualquiera de nuestras opciones": "Enjoy a comfortable and enjoyable stay at any of our options",
+    "Habitación Familiar (Aire Acondicionado)": "Family Room (Air Conditioning)",
+    "2 habitaciones disponibles, cada una con cama matrimonial + camas individuales.": "2 bedrooms available, each with a double bed + single beds.",
+    "Precio": "Price",
+    "por pareja": "per couple",
+    "*Persona adicional:": "*Additional Person:",
+    "Más Información": "Learn More",
+    "Habitación Familiar (Ventilador)": "Family Room (Fan)",
+    "Habitación Matrimonial (Ventilador)": "Double Room (Fan)",
+    "2 habitaciones disponibles, cada una con cama matrimonial.": "2 bedrooms available, each with a double bed.",
+    "Vive la aventura en las áreas más hermosas de Costa Rica": "Live the adventure in the most beautiful areas of Costa Rica",
+    "Idioma": "Language",
+    "Estación San Pedrillo":"San Pedrillo Station",
+    "Explora 5 km de selva por senderos de dificultad media, observa la biodiversidad del parque y disfruta un picnic en la naturaleza. Finaliza con un regreso en bote y vistas espectaculares de la costa.":"Explore 5 km of jungle on medium-difficulty trails, observe the park's biodiversity, and enjoy a picnic in nature. End with a boat return and spectacular views of the coast.",
+    "Estación Sirena": "Sirena Station",
+    "Explora la biodiversidad del parque en una caminata de 4 horas por senderos fáciles. Descubre monos, tapires y aves tropicales, mientras los guías comparten historias. Concluye con un almuerzo típico y un paseo en bote con vistas impresionantes.": "Explore the park's biodiversity on a 4-hour hike along easy trails. Discover monkeys, tapirs, and tropical birds, as guides share stories. It concludes with a typical lunch and a boat ride with breathtaking views.",
+    "Isla del Caño: Snorkel": "Caño Island: Snorkeling",
+    "Embárcate en una experiencia de snorkeling en aguas cristalinas, explorando arrecifes vibrantes con guías expertos. Visita un mirador en la isla para vistas espectaculares y termina el día en la playa San Josecito con un delicioso casado costarricense. ¡Ideal para todas las edades!": "Snorkel vibrant reefs, enjoy island views, and end with a Costa Rican casado at San Josecito Beach.",
+    "Isla del Caño: Buceo": "Caño Island: Diving",
+    "Bucea en Isla del Caño y descubre arrecifes vibrantes con guías expertos (requiere licencia). Disfruta vistas del Pacífico desde el mirador y relájate en la playa San Josecito con un casado costarricense. ¡Una aventura única para buceadores certificados!": "Dive Caño Island and discover vibrant reefs with expert guides (license required). Enjoy views of the Pacific from the viewpoint and relax on San Josecito Beach with a Costa Rican married man. A unique adventure for certified divers!",
+    "Manglares":"Mangroves",
+    "Explora en bote durante 3 horas los impresionantes manglares de Bahía Drake, hogar de una rica biodiversidad. Haz paradas guiadas para aprender sobre su importancia ecológica y su impacto en la pesca y recolección artesanal. ¡Una experiencia educativa y fascinante en la naturaleza!": "Explore the stunning mangroves of Drake Bay by boat for 3 hours, home to rich biodiversity. Make guided stops to learn about its ecological importance and its impact on artisanal fishing and gathering. An educational and fascinating experience in nature!",
+    "Cabalgata Tour": "Horseback Riding Tour",
+    "Embárcate en una cabalgata de 3 horas por la hermosa playa de Bahía Drake y sus alrededores. Disfruta de vistas panorámicas del océano y la selva tropical, mientras recorres el centro de Bahía Drake y exploras un pintoresco paseo por la montaña. Con la guía de expertos locales, vive una experiencia única rodeado de naturaleza y tranquilidad.": "Enjoy a 3-hour horseback ride through Drake Bay’s beach, rainforest, and scenic mountain trails. Guided by local experts, experience breathtaking views and the tranquility of nature.",
+    "Avistamiento de Delfines y Ballenas": "Dolphin and Whale Watching Tour",
+    "Vive la belleza de la costa de Costa Rica mientras observas delfines saltando y ballenas jorobadas. Nuestros guías te llevarán a los mejores lugares para una experiencia marina inolvidable.": "Experience the beauty of Costa Rica's coastline as you spot jumping dolphins and humpback whales. Our guides will take you to the best places for an unforgettable marine experience.",
+    "Caminata Nocturna: Tour": "NightWalk Tour",
+    "Explora durante 3 horas el bosque lluvioso bajo la luz de la luna y linternas. Descubre la fauna nocturna, como insectos luminosos, murciélagos, reptiles y serpientes, con guías expertos. ¡Una experiencia única para conocer la biodiversidad nocturna!": "Explore the rainforest for 3 hours under moonlight and lanterns. Discover nocturnal wildlife, such as luminous insects, bats, reptiles, and snakes, with expert guides. A unique experience to get to know the nocturnal biodiversity!",
+    "Pesca": "Fishing Tour",
+    "Nuestros capitanes expertos te llevarán a los mejores puntos de pesca. Lanza tu anzuelo y busca las capturas más impresionantes. Equipos de alta calidad y consejos de expertos garantizan una experiencia de pesca exitosa e inolvidable.": "Our expert captains will take you to the best fishing spots. Cast your hook and look for the most impressive catches. High-quality equipment and expert advice ensure a successful and unforgettable fishing experience.",
+    "Avistamiento de Aves": "Bird Watching",
+    "Disfruta de 3 horas observando la fascinante avifauna de la Península Osa. Contempla sus colores, vuelos y plumajes mientras aprendes sobre su comportamiento con nuestros guías expertos en su hábitat natural.": "Enjoy 3 hours observing the fascinating birdlife of the Osa Peninsula. Contemplate its colors, flights, and plumages while learning about its behavior from our expert guides in its natural habitat",
+    "Sobre Nosotros": "About Us",
+    "Bienvenidos al Hotel Sunrise Corcovado!, nosotros somos un hotel familiar, específicamente la Familia Artavia, hicimos el hotel bajo el pensamiento de una experiencia tranquila, silenciosa, alejada del centro, cercana a la montaña y económica, centrada en una estadía duradera en el hotel para que puedan disfrutar de la experiencia Drake Bay Corcovado. De igual manera ofrecemos Tours y disponibilidad de Transporte, nuestra especialidad está en la comodidad de nuestros Huéspedes, contamos con un restaurante y servicio de limpieza en las cabinas, esperamos que el hotel sea de su interés!": "Welcome to the Hotel Sunrise Corcovado!, we are a family hotel, specifically the Artavia Family, we made the hotel under the thought of a quiet, silent experience, away from the center, close to the mountain and economical, focused on a lasting stay in the hotel so that you can enjoy the Drake bay Corcovado experience, In the same way we offer Tours and availability of Transportation,  our specialty is in the comfort of our Guests, we have a restaurant and cleaning service in the cabins, we hope that the hotel will be of interest to you!",
+    "Galería": "Gallery",
+    "Permítenos Atenderte de la mejor manera": "Let us serve you in the best way",
+    "Contacto": "Contact",
+    "Teléfono": "Phone Number",
+    "Nuestra Dirección": "Our Address",
+    "P956+68J, Provincia de Puntarenas, Osa": "P956+68J, Province of Puntarenas, Osa",
+    "Secciones": "Sections",
+    "CONTÁCTENOS": "CONTACT US",
+    "Nuestros Servicios": "Our Services",
+    "Reserva de Transporte": "Transportation Reservation",
+    "Bote de Sierpe a Drake y viceversa.": "Boat from Sierpe to Drake and vice versa.",
+    "Transporte Aeropuerto": "Airport Transportation",
+    "Traslado desde el aeropuerto hasta el hotel.": "Transfer from the airport to the hotel.",
+    "Taxi a Bahía Drake": "Taxi to Drake Bay",
+    "Servicio de transporte al centro de Bahía Drake.": "Shuttle Service to Downtown Drake Bay.",
+    "Transporte a Playas": "Transportation to Beaches",
+    "Servicio colectivo a las playas cercanas.": "Collective service to nearby beaches.",
+
+
+
+
+
+
+
+    "Tour de Avistamiento de Aves": "Bird Watching Tour",
+    "Duración: 3 horas": "Duration: 3 hours",
+    "Avistamiento de Aves en la Península de Osa": "Bird Watching on the Osa Peninsula",
+    "Explora la avifauna más fascinante en su hábitat natural": "Explore the most fascinating birdlife in its natural habitat",
+    "La exuberante selva tropical es el hogar de decenas de variedades de aves, cada una más fascinante que la anterior. Durante este tour de 3 horas, tendrás la oportunidad de observar los llamativos colores, elegantes vuelos y atípicos plumajes de la impresionante avifauna de la": "The lush rainforest is home to dozens of varieties of birds, each more fascinating than the last. During this 3-hour tour, you will have the opportunity to observe the striking colors, elegant flights and atypical plumage of the impressive birdlife of the",
+    "Península Osa": "Osa Peninsula",
+    "Aprenderás sobre su comportamiento y características gracias a la guía de nuestros expertos.": "You will learn about its behavior and characteristics thanks to the guidance of our experts.",
+    "Descripción del Tour": "Tour Description",
+    "Avistamiento de aves en la selva tropical de la Península Osa.":"Bird watching in the rainforest of the Osa Peninsula",
+    "Oportunidad de aprender sobre el comportamiento y las características de la avifauna local.": "Opportunity to learn about the behavior and characteristics of the local birdlife.",
+    "Guías especializados que compartirán sus conocimientos sobre las especies y su hábitat.":"Specialized guides who will share their knowledge about the species and their habitat.",
+    "Tour de 3 horas en un entorno natural, ideal para los amantes de la naturaleza.":"3-hour tour in a natural environment, ideal for nature lovers.",
+    "Incluye:":"Includes:",
+    "Guía especializado en avistamiento de aves":"Guide specialized in bird watching",
+    "Equipamiento de avistamiento de aves": "Birdwatching equipment",
+    "$60 + 13% IVA por persona": "$60 + 13% VAT per person",
+    "Para reservar, puedes escribir a cualquiera de los siguientes correos:": "To book, you can write to any of the following emails:",
+    "Reservar": "Book",
+    "ISLA DEL CAÑO: Buceo":"CAÑO ISLAND: Diving",
+    "Duración: 6 horas": "Duration: 6 hours",
+    "Tour de Buceo - Isla del Caño": "Diving Tour - Caño Island",
+    "Una aventura en una reserva biológica única": "An adventure in a unique biological reserve",
+    "La":"",
+    "Isla del Caño":"Caño Island",
+    "es una reserva biológica de gran importancia, conocida por sus aguas cristalinas y su rica biodiversidad marina. Este tour ofrece una experiencia única de buceo, explorando los mejores puntos de avistamiento submarino con guías expertos. Ideal para quienes tienen licencia de buceo profesional y buscan una aventura emocionante.":"is a biological reserve of great importance, known for its crystal clear waters and rich marine biodiversity. This tour offers a unique diving experience, exploring the best underwater sighting points with expert guides. Ideal for those who have a professional diving license and are looking for an exciting adventure.",
+    "Traslado en bote hacia la reserva, disfrutando de vistas panorámicas del océano.": "Transfer by boat to the reserve, enjoying panoramic views of the ocean.",
+    "Primera sesión de": "First session of",
+    "buceo": "Diving",
+    "se requiere licencia de buceo profesional.":"Professional diving license required.",
+    "Exploración de los mejores puntos de buceo con guías especializados.":"Exploration of the best diving spots with specialized guides.",
+    "Visita a la Isla y su mirador con vistas espectaculares.": "Visit to the island and its viewpoint with spectacular views.",
+    "Segunda sesión de buceo en otro punto de avistamiento.": "Second diving session at another sighting point.",
+    "Parada en":"Stop in",
+    "San Josecito":"San Josecito",
+    "antes del regreso.":"before return.",
+    "Finalizamos con un delicioso":"We finish with a delicious",
+    "almuerzo típico costarricense":"typical Costa Rican lunch",
+    "Guía especializado":"Specialized guide",
+    "Translado en bote":"Transfer by boat",
+    "Equipamiento de buceo":"Diving equipment",
+    "2 tanques de aire":"2 air tanks",
+    "Snack":"Snack",
+    "Almuerzo":"Lunch",
+    "Entrada a la reserva":"Entrance to the reserve",
+    "IVA por persona": "VAT per person",
+    "CABALGATA CASCADA NAGUALA": "HORSEBACK RIDING",
+    "Cabalgata Cascada Naguala":"Horseback Riding Naguala Waterfall",
+    "Un paseo a caballo por el paraíso tropical de Bahía Drake":"A horseback ride through the tropical paradise of Drake Bay",
+    "Un tranquilo paseo a caballo es una hermosa forma de apreciar la naturaleza que compone": "A leisurely horseback ride is a beautiful way to appreciate the nature that makes up",
+    "Bahía Drake":"Drake Bay",
+    "En este recorrido de 3 horas, podrás conocer los rincones fascinantes que esconde este bosque tropical lluvioso, descansar y refrescarte en el río, y admirar y fotografiar el inmenso atardecer desde los lugares más bellos de la región, que solo nuestros guías autóctonos conocen.":"On this 3-hour tour, you will be able to get to know the fascinating corners hidden in this tropical rainforest, rest and cool off in the river, and admire and photograph the immense sunset from the most beautiful places in the region, which only our local guides know.",
+    "Paseo a caballo por los hermosos rincones de Bahía Drake.":"Horseback riding through the beautiful corners of Drake Bay.",
+    "Recorrido por el bosque tropical lluvioso, conocido por su biodiversidad.":"Tour through the tropical rainforest, known for its biodiversity.",
+    "Oportunidad de descansar y refrescarse en el río durante el recorrido.":"Opportunity to rest and cool off in the river during the tour.",
+    "Disfrutar de un atardecer espectacular desde puntos exclusivos, conocidos solo por nuestros guías autóctonos.":"Enjoy a spectacular sunset from exclusive points, known only to our native guides.",
+    "Un recorrido de 3 horas lleno de tranquilidad y belleza natural.":"A 3-hour tour full of tranquility and natural beauty.",
+    "Caballo":"Horse",
+    "Equipamiento de seguridad":"Safety Equipment",
+    "Tour de Delfines y Ballenas": "Dolphin and Whale Tour",
+    "Tour de Avistamiento de Delfines y Ballenas":"Dolphin & Whale Watching Tour",
+    "Una experiencia marina incomparable":"An incomparable marine experience",
+    "Desde el momento en que zarpa el bote, estarán rodeados por la":"From the moment the boat sets sail, you will be surrounded by the",
+    "belleza natural":"natural beauty",
+    "de la costa de Costa Rica. Nuestros guías expertos los llevarán a los mejores lugares para una experiencia única en el océano.":"of Costa Rica´s coastline. Our expert guides will take you to the best spots for a unique ocean experience.",
+    "Sentirán la emoción de presenciar los":"You will feel the thrill of witnessing the",
+    "saltos y acrobacias de los delfines":"dolphin jumps and acrobatics",
+    "y quedarán maravillados con la":"and you will be amazed at the",
+    "imponente presencia de las ballenas jorobadas":"Imposing presence of humpback whales",
+    "un espectáculo natural que deja sin aliento.":"a natural spectacle that takes your breath away.",
+    "Traslado en bote":"Transfer by boat",
+    "ISLA DEL CAÑO: Snorkel":"CAÑO ISLAND: Snorkel",
+    "Tour de Snorkeling - Isla del Caño":"Snorkeling Tour - Caño Island",
+    "es una reserva biológica de gran importancia, reconocida por sus cristalinas aguas y su rica biodiversidad marina. Este tour ofrece una experiencia inolvidable explorando su vida submarina, ideal tanto para aventureros como para quienes buscan un plan relajado.":"is a biological reserve of great importance, recognized for its crystal clear waters and its rich marine biodiversity. This tour offers an unforgettable experience exploring its underwater life, ideal for both adventurers and those looking for a relaxed plan.",
+    "Viaje en bote hacia la reserva, disfrutando de las vistas panorámicas del océano.":"Travel by boat to the reserve, enjoying panoramic views of the ocean.",
+    "snorkeling":"snorkeling",
+    ", sin necesidad de experiencia previa.":", no previous experience required.",
+    "Segunda sesión de snorkeling en otro punto de avistamiento.": "Second snorkeling session at another sighting point.",
+    "Equipamiento de snorkeling":"Snorkeling Equipment",
+    "Tour de Manglares":"Mangrove Tour",
+    "Tour de Manglares - Bahía Drake":"Mangrove Tour - Drake Bay",
+    "Una aventura en los ecosistemas más ricos de la región":"An adventure in the richest ecosystems of the region",
+    "En este tour, recorrerás durante 3 horas en bote la extensión de los manglares que rodean los ríos y playas de":"On this tour, you will travel for 3 hours by boat through the expanse of mangroves that surround the rivers and beaches of Drake Bay",
+    "Harás varias paradas para apreciar y aprender con un guía especializado sobre la existencia de los manglares y sus beneficios, no solo para los animales que habitan la región, sino también para la pesca y la recolección artesanal.":"You will make several stops to appreciate and learn from a specialized guide about the existence of mangroves and their benefits, not only for the animals that inhabit the region, but also for fishing and artisanal gathering.",
+    "Recorrido en bote por los manglares que rodean los ríos y playas de Bahía Drake.":"Boat tour through the mangroves surrounding the rivers and beaches of Drake Bay.",
+    "Varios puntos de parada para aprender sobre los manglares y su importancia ecológica.":"Several stopping points to learn about mangroves and their ecological importance.",
+    "Conocerás los beneficios de los manglares para los ecosistemas locales y la pesca artesanal.":"You will learn about the benefits of mangroves for local ecosystems and artisanal fishing.",
+    "Guía especializado para explicar la biodiversidad de la zona.":"Specialized guide to explain the biodiversity of the area.",
+    "Tour de Caminata Nocturna":"NightWalk Tour",
+    "Tour Nocturno en el Bosque Lluvioso":"NightWalk Tour in the Rainforest",
+    "Explora la vida salvaje bajo la luz de la luna":"Explore wildlife under the moonlight",
+    "Durante":"During",
+    "3 horas":"3 hours",
+    ", nuestros expertos guías los conducirán a través de senderos seleccionados para adaptarse a las capacidades de los participantes.":", our expert guides will lead you through trails selected to suit the abilities of the participants.",
+    "Cada paso los acercará a":"Each step will bring you closer to",
+    "encuentros emocionantes":"Exciting encounters",
+    "con la fauna nocturna.":"with nocturnal fauna.",
+    "La mayoría de la":"Most of the",
+    "vida silvestre de Bahía Drake":"Drake Bay Wildlife",
+    "se activa después del anochecer, y esta experiencia les permitirá descubrir los":"is activated after dark, and this experience will allow you to discover the",
+    "secretos del bosque lluvioso":"secrets of the Rainforest",
+    "bajo la luz de la luna y las linternas.":"under the moonlight and lanterns.",
+    "Desde":"From",
+    "insectos luminosos":"luminous insects",
+    "y":"and",
+    "murciélagos":"bats",
+    "hasta":"to",
+    "reptiles de gran tamaño":"Large reptiles",
+    "y las":"and the",
+    "serpientes más letales":"most lethal snakes",
+    "de la región":"in the region",
+    "vivirán una aventura única mientras aprenden sobre la diversidad de nuestra fauna nocturna.":"you will live a unique adventure while learning about the diversity of our nocturnal fauna.",
+    "Linterna": "Lantern",
+    "Botas de goma":"Rubber Boots",
+    "IVA":"VAT",
+    "Tour de Pesca":"Fishing Tour",
+    "Duración":"Duration",
+    "Medio Día (4 horas) | Día Completo (8 horas)":"Half Day (4 hours) | Full Day (8 hours)",
+    "Tour de Pesca Deportiva":"Sport Fishing Tour",
+    "Vive una aventura inolvidable en el océano":"Live an unforgettable adventure in the ocean",
+    "Nuestros":"Our",
+    "experimentados capitanes":"experienced captains",
+    "los llevarán a los":"will take you to the",
+    "mejores puntos de pesca":"best fishing spots",
+    ", donde podrán lanzar sus anzuelos y adentrarse en la búsqueda de las":", where you can cast your hooks and go in search of the",
+    "capturas más impresionantes":"most impressive captures",
+    "Podrán optar por":"You can opt for",
+    "medio día o un día completo":"half day or full day",
+    "de pesca. Con":"of fishing. With",
+    "equipos de alta calidad":"high-quality equipment",
+    "proporcionados y consejos de expertos, garantizamos una":"and expert advice, we guarantee an",
+    "experiencia de pesca exitosa e inolvidable":"successful and unforgettable fishing experience",
+    "Medio Día de Pesca (1-4 personas)":"Half Day Fishing (1-4 people)",
+    "Fruta":"Fruit",
+    "Bebida":"Drink",
+    "Bote":"Boat",
+    "Capitán":"Captain",
+    "Equipamiento":"Equipment",
+    "Día Completo de Pesca (1-4 personas)":"Full Day Fishing (1-4 people)",
+    "TOUR SAN PEDRILLO":"SAN PEDRILLO TOUR",
+    "Duración: 4 horas":"Duration: 4 hours",
+    "DAY TOUR PARQUE NACIONAL CORCOVADO":"CORCOVADO NATIONAL PARK DAY TOUR",
+    "Durante cuatro horas, explorarán aproximadamente":"For four hours, you will explore approximately",
+    "5km":"5km",
+    "de la maravillosa selva primaria y secundaria de San Pedrillo, donde la densa vegetación los envolverá en un mundo lleno de vida y misterio.":"of the wonderful primary and secondary jungle of San Pedrillo, where the dense vegetation will envelop you in a world full of life and mystery.",
+    "La ruta es de":"The route is of",
+    "dificultad media":"medium difficulty",
+    "A través de senderos cuidadosamente seleccionados, nuestros guías expertos los acompañarán en esta travesía. Junto a ellos podrán disfrutar y aprender de la abundante vegetación y riqueza biológica de esta área protegida.":". Through carefully selected trails, our expert guides will accompany you on this journey. Together with them they will be able to enjoy and learn about the abundant vegetation and biological richness of this protected area.",
+    "Mientras caminan, tendrán la oportunidad de avistar una gran variedad de":"As you walk, you will have the opportunity to spot a wide variety of",
+    "flora y fauna":"flora and fauna",
+    ", desde impresionantes árboles hasta coloridas aves tropicales.":", from stunning trees to colorful tropical birds.",
+    "Después de la caminata, disfrutarán de un abundante":"After the hike, you will enjoy a hearty ",
+    "picnic":"picnic",
+    ", donde podrán relajarse y recargar energías mientras escuchan el suave murmullo de las olas y la paz del bosque.":", where you can relax and recharge while listening to the gentle murmur of the waves and the peace of the forest.",
+    "El regreso será en bote, permitiéndoles disfrutar de la impresionante vista de la costa y proporcionando una perspectiva única del Parque Nacional Corcovado desde el agua.":"The return will be by boat, allowing you to enjoy the breathtaking view of the coast and providing a unique perspective of Corcovado National Park from the water.",
+    "Almuerzo tipo picnic":"Picnic lunch",
+    "Entradas al parque":"Park tickets",
+    "Guía experto":"Expert guide",
+    "Contáctenos":"Contact Us",
+    "duración: 4 horas":"duration: 4 hours",
+    "Durante cuatro horas, podrán sumergirse en este espectacular bosque secundario y tendrán la oportunidad de explorar uno de los ecosistemas más biodiversos del planeta.":"For four hours, you will be able to immerse yourself in this spectacular secondary forest and you will have the opportunity to explore one of the most biodiverse ecosystems on the planet.",
+    "Nuestro itinerario incluye una caminata a través de diversos senderos de":"Our itinerary includes a hike through various low-difficulty trails",
+    "que abarcan cerca de":"spanning about",
+    "del recorrido":"of the ruoute",
+    "donde nuestros guías expertos les garantizarán una experiencia inolvidable, señalando la fascinante vida silvestre que habita en la región.":"where our expert guides will guarantee you an unforgettable experience, pointing out the fascinating wildlife that inhabits the region.",
+    "Desde monos hasta exóticas aves tropicales, tapires y perezosos, cada paso ofrece la posibilidad de un encuentro único con la naturaleza.":"From monkeys to exotic tropical birds, tapirs and sloths, each step offers the possibility of a unique encounter with nature.",
+    "Además del avistamiento de vida silvestre, nuestros guías también compartirán conocimientos sobre la historia y la cultura del lugar, incluidos los habitantes originarios de esta tierra y su relación con el entorno natural.":"In addition to wildlife viewing, our guides will also share knowledge about the history and culture of the place, including the original inhabitants of this land and their relationship with the natural environment.",
+    "Después de la caminata, los esperan en la Estación de Guardaparques, donde disfrutarán de un delicioso y abundante":"After the hike, they will be awaited at the Park Ranger Station, where you will enjoy a delicious and hearty",
+    "Los traslados de ida y vuelta serán en bote, experiencia que permite admirar la inmensa extensión del Parque Nacional Corcovado desde el agua.":"Round-trip transfers will be by boat, an experience that allows you to admire the immense expanse of Corcovado National Park from the water.",
+    "Almuerzo típico costarricense":"Costa Rican typical lunch",
+    "ESTACIÓN SIRENA":"SIRENA STATION",
+    "¿Porqué Nosotros?":"Why Us?",
+    "Ubicación Privilegiada":"Privileged location",
+    "Disfruta de un entorno único, con vistas espectaculares y acceso a la playa.":"Enjoy a unique environment, with spectacular views and access to the beach.",
+    "Experiencias Únicas":"Unique Experiences",
+    "Vive aventuras inolvidables, desde snorkel hasta caminatas nocturnas.":"Go on unforgettable adventures, from snorkeling to night hikes.",
+    "Comodidad y Relajación":"Comfort and Relaxation",
+    "Descansa en habitaciones confortables y disfruta de un ambiente tranquilo.":"Rest in comfortable rooms and enjoy a peaceful atmosphere.",
+    "Atención de Primera Clase":"First Class Care",
+    "Nuestro equipo está siempre listo para brindarte un servicio excepcional.":"Our team is always ready to provide you with exceptional service.",
+    "HABITACIONES":"ROOMS",
+    "Nuestras habitaciones están diseñadas para ofrecerte el máximo confort y tranquilidad. Disfruta de espacios amplios, camas cómodas y todas las comodidades modernas que necesitas para una estancia inolvidable. Ya sea que prefieras aire acondicionado o ventilador, tenemos la opción perfecta para ti.":"Our rooms are designed to offer you maximum comfort and tranquility. Enjoy spacious spaces, comfortable beds, and all the modern amenities you need for an unforgettable stay. Whether you prefer air conditioning or fan, we have the perfect option for you.",
+    "Disfruta de una estancia cómoda y agradable en cualquiera de nuestras opciones.":"Enjoy a comfortable and enjoyable stay at any of our options.",
+    "Habitación - 24 m² (Duerme 3)":"Bedroom - 24 m² (Sleeps 3)",
+    "Destacados":"Featured",
+    "Aire acondicionado":"Air conditioning",
+    "Ventilador portátil":"Portable fan",
+    "Baño privado":"Private bathroom",
+    "Limpieza diaria":"Daily cleaning",
+    "Camas":"Beds",
+    "1 Cama Queen":"1 Queen Bed",
+    "1 Cama Individual":"1 Single Bed",
+    "Servicios":"Services",
+    "WiFi Gratis (25+ Mbps)":"Free WiFi (25+ Mbps)",
+    "Sábanas nuevas cada 3 días":"New sheets every 3 days",
+    "Vista al jardín":"Garden view",
+    "Baño":"Bathroom",
+    "Ducha":"Shower",
+    "Jabón":"Soap",
+    "Papel higiénico":"Toilet paper",
+    "No incluye cepillo ni pasta de dientes":"Does not include brush or toothpaste",
+    "Toallas frescas (a solicitud)":"Fresh towels (on request)",
+    "Habitación Matrimonial Individual (Duerme 3)":"Single Double Room (sleeps 3)",
+    "Piso de baldosas en la habitación":"In-room tile floor",
+    "Habitación - 24 m² (Duerme 2)":"Bedroom - 24 m² (Sleeps 2)",
+    "Queremos contarte un poco más sobre quiénes somos":"We want to tell you a little more about who we are",
+    "Descubre la historia, misión y valores de Hotel Sunrise Corcovado.":"Discover the history, mission and values of Hotel Sunrise Corcovado.",
+    "Nuestra Historia":"Our History",
+    "Hotel Sunrise Corcovado nació de la visión de la Familia Artavia, quienes soñaban con ofrecer un espacio tranquilo y acogedor en Bahía Drake. Inspirados por la belleza natural de la región, creamos un refugio rodeado de naturaleza para quienes buscan una conexión auténtica en Corcovado.":"Hotel Sunrise Corcovado was born from the vision of the Artavia Family, who dreamed of offering a quiet and cozy space in Drake Bay. Inspired by the natural beauty of the region, we created a refuge surrounded by nature for those looking for an authentic connection in Corcovado.",
+    "Nuestra Visión":"Our Vision",
+    "En Hotel Sunrise Corcovado, priorizamos la comodidad, tranquilidad y hospitalidad. Nos esforzamos por ofrecer una experiencia inolvidable a cada huésped, asegurando un ambiente sereno y un servicio de calidad.":"At Hotel Sunrise Corcovado, we prioritize comfort, tranquility and hospitality. We strive to offer an unforgettable experience to each guest, ensuring a serene atmosphere and quality service.",
+    "Tu comodidad es nuestra prioridad. Contáctanos y te ayudaremos con lo que necesites.":"Your comfort is our priority. Contact us and we will help you with whatever you need.",
+    "Estamos aquí para ayudarte. Contáctanos a través de cualquiera de los siguientes medios.":"We're here to help. Contact us through any of the following means.",
+    "Información de Contacto":"Contact Information",
+    "Dirección:":"Address",
+    "Correo:":"Email",
+    "Recorrido por la Estación de Sirena":"Sirena Station Tour",
+    "Adéntrate en el corazón del Corcovado y descubre la mayor concentración de vida silvestre del parque":"Explore the heart of Corcovado and witness the highest density of wildlife in the park.",
+    "Ubicación completamente natural":"Completely natural location",
+    "Rodeado de naturaleza pura, lejos del río principal y a solo 15 minutos a pie de la playa.":"Nestled in pure nature, away from the main river and only 15 minutes on foot from the beach.",
+    "reserve_birdwatching": "Book Bird Watching in the Osa Peninsula",
+    "reserve_diving": "Book Diving in Caño Island",
+    "reserve_horseback_riding_tour":"Book Horseback Riding Tour",
+    "dolphin_whale_tour":"Book Dolphin & Whale Watching Tour",
+    "snorkel_tour_reserve":"Book Caño Island Snorkeling Tour",
+    "mangrove_reserve":"Book Mangrove Tour",
+    "nightwalk_reserve":"Book Night Walking Tour",
+    "fishing_reserve":"Book Fishing Tour",
+    "san_pedrillo_reserve":"Book San Pedrillo Station Tour",
+    "sirena_station_reserve":"Book Sirena Station Tour",
+    "Disfruta de una experiencia única con nuestros Tours. ¡Una aventura que nunca olvidarás!":"Enjoy a unique experience with our Tours ¡An adventure that you will never forget!",
+    "Avistamiento de Delfines":"Dolphin Watching Tour",
+    "Vive la belleza de la costa de Costa Rica mientras observas delfines saltando. Nuestros guías te llevarán a los mejores lugares para una experiencia marina inolvidable.":"Experience the beauty of Costa Rica's coastline as you watch dolphins jumping. Our guides will take you to the best places for an unforgettable marine experience.",
+    "Avistamiento de Ballenas":"Whale Watching Tour",
+    "Vive la majestuosidad de las ballenas jorobadas mientras navegas por la hermosa costa de Costa Rica. Una experiencia única que te conectará con la imponente belleza marina.":"Experience the majesty of humpback whales as you sail along the beautiful coast of Costa Rica. A unique experience that will connect you with the imposing beauty of the sea.",
+    "un espectáculo natural que deja sin aliento y llena de alegría a cada visitante.":"A natural spectacle that takes every visitor's breath away and fills them with joy.",
+    "observando sus majestuosos saltos y comportamientos. Este espectáculo natural será un recuerdo que atesorarán para siempre.":"observing their majestic jumps and behaviors. This natural spectacle will be a memory that they will treasure forever.",
+    "family-room-ac":"Book Family Room (Air Conditioning)",
+    "family-room-fan":"Book Family Room (Fan)",
+    "double-room-fan":"Doppelzimmer (Ventilator) buchen",
+    "por persona":"per person",
+    "Visita a la playa San Josecito":"Visit to San Josecito Beach",
+    "2 - 4 horas de tour | 1 - 8 horas de tour":"2 - 4 hours tour | 1 - 8 hours tour",
+    "2 - 4 horas de Tour":"2 - 4 hours Tour",
+    "1 - 8 horas de Tour":"1 - 8 hours Tour",
+    "Envíanos un mensaje":"Send us a message",
+    "Nombre":"Name",
+    "Mensaje":"Message",
+    "Enviar por WhatsApp":"Send by WhatsApp",
+    "Enviar":"Send",
+    "SOBRE NOSOTROS":"ABOUT US",
+    "Todos los derechos reservados.":"All rights reserved",
+    "Una experiencia marina inolvidable":"An unforgettable marine experience",
+    "Hotel Sunrise Corcovado en Bahía Drake":"Hotel Sunrise Corcovado in Drake Bay",
+    "Tours en Bahía Drake - Aventuras únicas en Corcovado":"Tours in Drake Bay - Unique adventures in Corcovado",
+    "Hotel Sunrise Corcovado: tu mejor opción de hospedaje en Bahía Drake, Costa Rica. Vistas únicas, naturaleza y descanso inolvidable.":"Hotel Sunrise Corcovado: your best accommodation option in Bahía Drake, Costa Rica. Unique views, nature, and unforgettable relaxation."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    
+}

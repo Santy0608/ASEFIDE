@@ -1,0 +1,137 @@
+<!-- registrar-prestamo.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/prestamos">Préstamos</a>
+  <span class="sep">›</span>
+  <span class="current">{{ prestamo.idPrestamo > 0 ? 'Editar Préstamo' : 'Crear Préstamo' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="1" x2="12" y2="23"/>
+      <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+    </svg>
+    {{ prestamo.idPrestamo > 0 ? 'Editar Préstamo' : 'Crear Préstamo' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ prestamo.idPrestamo > 0 ? 'actualizar el' : 'registrar un nuevo' }} préstamo en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(prestamoForm)" #prestamoForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+          </svg>
+        </div>
+        <span class="section-title">Montos del Préstamo</span>
+      </div>
+
+      <input type="hidden" name="idPrestamo" [(ngModel)]="prestamo.idPrestamo">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Monto Solicitado <span class="req">*</span></label>
+          <div class="input-suffix">
+            <input name="montoSolicitado" [(ngModel)]="prestamo.montoSolicitado"
+                   type="number" placeholder="Ej. 500000" required>
+            <span class="suffix">₡</span>
+          </div>
+        </div>
+        <div class="field" *ngIf="prestamo.idPrestamo > 0">
+          <label>Saldo Pendiente <span class="req">*</span></label>
+          <div class="input-suffix">
+              <input name="saldoPendiente" [(ngModel)]="prestamo.saldoPendiente"
+                    type="number" placeholder="Ej. 500000" required>
+              <span class="suffix">₡</span>
+          </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <span class="section-title">Condiciones del Préstamo</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Tasa de Interés <span class="req">*</span></label>
+          <div class="input-suffix">
+            <input name="tasaIntereses" [(ngModel)]="prestamo.tasaIntereses"
+                   type="number" placeholder="Ej. 12" required>
+            <span class="suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Plazo <span class="req">*</span></label>
+          <div class="input-suffix">
+            <input name="plazoMeses" [(ngModel)]="prestamo.plazoMeses"
+                   type="number" placeholder="Ej. 24" required>
+            <span class="suffix">mes</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Fecha Aprobación <span class="req">*</span></label>
+          <input name="fechaAprobacion" [(ngModel)]="prestamo.fechaAprobacion"
+                 type="date" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          </svg>
+        </div>
+        <span class="section-title">Asociado</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field field-full">
+          <label>Usuario</label>
+          <ng-select [items]="usuarios" bindLabel="nombreCompleto" bindValue="idUsuario"
+                     placeholder="Seleccione un usuario" [(ngModel)]="prestamo.usuarioId"
+                     name="usuarioId" [searchable]="true"
+                     [virtualScroll]="true" [bufferAmount]="10">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/prestamos']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="prestamoForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ prestamo.idPrestamo > 0 ? 'Guardar Cambios' : 'Crear Préstamo' }}
+      </button>
+    </div>
+
+  </div>
+</form>

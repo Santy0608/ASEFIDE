@@ -1,0 +1,63 @@
+<!-- registrar-correo.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/correos">Correos</a>
+  <span class="sep">›</span>
+  <span class="current">{{ correo.idCorreo > 0 ? 'Editar Correo' : 'Crear Correo' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
+    </svg>
+    {{ correo.idCorreo > 0 ? 'Editar Correo' : 'Crear Correo' }}
+  </div>
+  <div class="page-subtitle">
+    {{ correo.idCorreo > 0 ? 'Actualice el' : 'Registre un nuevo' }} correo electrónico en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(correoForm)" #correoForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos del Correo</span>
+      </div>
+
+      <input type="hidden" name="idCorreo" [(ngModel)]="correo.idCorreo">
+
+      <div class="field">
+        <label>Correo Electrónico <span class="req">*</span></label>
+        <input name="correoElectronico" [(ngModel)]="correo.correoElectronico" #name="ngModel"
+               type="email" placeholder="Ej. usuario@correo.com" required>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/correos']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="correoForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ correo.idCorreo > 0 ? 'Guardar Cambios' : 'Crear Correo' }}
+      </button>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,61 @@
+<!-- registrar-tipo-reporte.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/tipos-reportes">Tipos de Reporte</a>
+  <span class="sep">›</span>
+  <span class="current">{{ tipoReporte.idTipoReporte > 0 ? 'Editar Tipo Reporte' : 'Crear Tipo Reporte' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </svg>
+    {{ tipoReporte.idTipoReporte > 0 ? 'Editar Tipo Reporte' : 'Crear Tipo Reporte' }}
+  </div>
+  <div class="page-subtitle">
+    Complete el campo para {{ tipoReporte.idTipoReporte > 0 ? 'actualizar el' : 'registrar un nuevo' }} tipo de reporte.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(tipoReporteForm)" #tipoReporteForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos del Tipo de Reporte</span>
+      </div>
+
+      <input type="hidden" name="idTipoReporte" [(ngModel)]="tipoReporte.idTipoReporte">
+
+      <div class="field">
+        <label>Nombre del Tipo de Reporte <span class="req">*</span></label>
+        <input name="nombre" [(ngModel)]="tipoReporte.nombre" #name="ngModel"
+               type="text" placeholder="Ej. Reporte Mensual" required>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/tipos-reportes']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="tipoReporteForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ tipoReporte.idTipoReporte > 0 ? 'Guardar Cambios' : 'Crear Tipo Reporte' }}
+      </button>
+    </div>
+
+  </div>
+</form>

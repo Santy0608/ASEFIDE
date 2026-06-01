@@ -1,0 +1,102 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/reportes">Reportes</a>
+  <span class="sep">›</span>
+  <span class="current">Generar Reporte</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </svg>
+    Generar Reporte
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para generar un nuevo reporte en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(reporteForm)" #reporteForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <span class="section-title">Rango de Fechas</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Fecha Inicio <span class="req">*</span></label>
+          <input name="fechaInicio" [(ngModel)]="reporte.fechaInicio" type="date" required>
+        </div>
+        <div class="field">
+          <label>Fecha Final <span class="req">*</span></label>
+          <input name="fechaFinal" [(ngModel)]="reporte.fechaFinal" type="date" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h8m-8 6h16"/>
+          </svg>
+        </div>
+        <span class="section-title">Clasificación del Reporte</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Tipo Reporte <span class="req">*</span></label>
+          <ng-select [items]="tiposReporte" bindLabel="nombre" bindValue="idTipoReporte"
+                     appendTo="body"
+                     placeholder="Seleccione tipo" [(ngModel)]="reporte.tipoReporteId"
+                     name="tipoReporteId" required>
+          </ng-select>
+        </div>
+        <div class="field">
+          <label>Módulo <span class="req">*</span></label>
+          <ng-select [items]="modulosReporte" bindLabel="nombre" bindValue="idModuloReporte"
+                     appendTo="body"
+                     placeholder="Seleccione módulo" [(ngModel)]="reporte.moduloReporteId"
+                     name="moduloReporteId" required>
+          </ng-select>
+        </div>
+        <div class="field field-full">
+          <label>Usuario <span class="req">*</span></label>
+          <ng-select [items]="usuarios" bindLabel="nombreUsuario" bindValue="idUsuario"
+                     appendTo="body"
+                     placeholder="Seleccione usuario" [(ngModel)]="reporte.usuarioId"
+                     name="usuarioId" required>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/reportes']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="reporteForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        Generar Reporte
+      </button>
+    </div>
+
+  </div>
+</form>

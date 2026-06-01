@@ -1,0 +1,57 @@
+<!-- beneficios-asociado.component.html -->
+<div class="beneficios-page">
+ 
+  <!-- Hero banner -->
+  <div class="hero-banner">
+    <img src="assets/images/Actividades.png" alt="Actividades" class="hero-img">
+    <div class="hero-overlay"></div>
+  </div>
+ 
+  <!-- Encabezado -->
+  <div class="section-header">
+    <h1 class="section-title">Actividades</h1>
+    <p class="section-desc">
+      Disfrutá de las actividades que ASEFIDE tiene para vos. Con nuestro increíble catálogo,
+      podrás disfrutar más allá de solo aportar tu porcentaje como obrero.
+    </p>
+  </div>
+ 
+  <!-- Loading -->
+  <div class="loading-state" *ngIf="cargando">
+    <div class="spinner"></div>
+    <span>Cargando actividades...</span>
+  </div>
+ 
+
+  <!-- Grid de actividades -->
+  <div class="beneficios-grid" *ngIf="!cargando">
+    <div
+      class="beneficio-card"
+      *ngFor="let actividad of actividades"
+      (click)="verDetalle(actividad)">
+ 
+      <div class="card-img-wrap">
+        <img
+          [src]="actividad.imagenUrl"
+          class="card-img">
+        <div class="card-img-overlay"></div>
+      </div>
+ 
+      <div class="card-body">
+        <h3 class="card-title">{{ actividad.nombre }}</h3>
+        <h5 class="card-title">Encargado: {{ actividad.nombreUsuario }} {{actividad.apellidoPaterno}}</h5>
+        <p class="card-desc">{{ actividad.descripcion }}</p>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- Sin resultados -->
+  <div class="empty-state" *ngIf="!cargando && actividades.length === 0">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 21C12 21 3 14 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-9 13-9 13z"/>
+    </svg>
+    <p>No hay actividades disponibles por el momento.</p>
+  </div>
+ 
+</div>

@@ -1,0 +1,167 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/usuarios">Usuarios</a>
+  <span class="sep">›</span>
+  <span class="current">{{ usuario.idUsuario > 0 ? 'Editar Usuario' : 'Registrar Usuario' }}</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="8" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5"/>
+        <circle cx="17" cy="9" r="2.5"/><path d="M22 20c0-2.5-2-4-5-4"/>
+      </svg>
+      {{ usuario.idUsuario > 0 ? 'Editar Usuario' : 'Registrar Usuario' }}
+    </div>
+    <div class="page-subtitle">Complete los campos para {{ usuario.idUsuario > 0 ? 'actualizar el' : 'registrar un nuevo' }} usuario en la asociación.</div>
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(usuarioForm)" #usuarioForm="ngForm">
+  <div class="form-card">
+
+    <!-- Información Personal -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <span class="section-title">Información Personal</span>
+      </div>
+      <div class="fields-grid">
+        <div class="field">
+          <label>Identificación <span class="req">*</span></label>
+          <input name="identificacion" [(ngModel)]="usuario.identificacion"
+                 placeholder="Ej. 102340567" required>
+        </div>
+        <div class="field">
+          <label>Nombre <span class="req">*</span></label>
+          <input name="nombre" [(ngModel)]="usuario.nombre"
+                 placeholder="Ej. Andrea" required>
+        </div>
+        <div class="field">
+          <label>Apellido Paterno <span class="req">*</span></label>
+          <input name="apellidoPaterno" [(ngModel)]="usuario.apellidoPaterno"
+                 placeholder="Ej. Rojas" required>
+        </div>
+        <div class="field">
+          <label>Apellido Materno <span class="req">*</span></label>
+          <input name="apellidoMaterno" [(ngModel)]="usuario.apellidoMaterno"
+                 placeholder="Ej. Méndez" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- Datos Asociados -->
+    <div class="section" *ngIf="!usuario.admin">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos Asociados</span>
+      </div>
+      <div class="fields-grid">
+        <div class="field">
+          <label>Teléfonos <span class="req">*</span></label>
+          <ng-select [items]="telefonos" 
+                    bindLabel="numeroTelefono" 
+                    bindValue="idTelefono"
+                    placeholder="Seleccione uno o varios teléfonos" 
+                    [(ngModel)]="usuario.numerosIds" 
+                    name="numerosIds" 
+                    [multiple]="true" 
+                    [closeOnSelect]="false"
+                    [searchable]="true" 
+                    [required]="!usuario.admin"
+                    appendTo="body" 
+                    required>
+          </ng-select>
+          <small class="text-muted">Puedes seleccionar varios números.</small>
+        </div>
+
+        <div class="field">
+          <label>Correos Electrónicos <span class="req">*</span></label>
+          <ng-select [items]="correos" 
+                    bindLabel="correoElectronico" 
+                    bindValue="idCorreo"
+                    placeholder="Seleccione uno o varios correos" 
+                    [(ngModel)]="usuario.correosIds" 
+                    name="correosIds" 
+                    [multiple]="true" 
+                    [closeOnSelect]="false"
+                    [searchable]="true" 
+                    [required]="!usuario.admin"
+                    appendTo="body" 
+                    required>
+          </ng-select>
+          <small class="text-muted">Puedes seleccionar varias direcciones.</small>
+        </div>
+        <div class="field">
+          <label>Datos Asociados <span class="req">*</span></label>
+          <ng-select [items]="datosAsociados" bindLabel="fechaAfiliacion" bindValue="idDatosAsociados"
+                     placeholder="Seleccione un dato" [(ngModel)]="usuario.identificacionDatosAsociados"
+                     name="identificacionDatosAsociados" [required]="!usuario.admin" appendTo="body" [searchable]="true" required>
+          </ng-select>
+        </div>
+        <div class="field">
+          <label>Dirección <span class="req">*</span></label>
+          <ng-select [items]="direcciones" bindLabel="distrito" [appendTo]="'body'" bindValue="idDireccion"
+                     placeholder="Seleccione una dirección" [(ngModel)]="usuario.direccionId"
+                     name="direccionId" [searchable]="true" [required]="!usuario.admin" appendTo="body" [dropdownPosition]="'bottom'" required>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credenciales -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <span class="section-title">Credenciales</span>
+      </div>
+      <div class="fields-grid">
+        <div class="field">
+          <label>Nombre de Usuario <span class="req">*</span></label>
+          <input name="nombreUsuario" [(ngModel)]="usuario.nombreUsuario"
+                 placeholder="Ej. arojas" required>
+        </div>
+        <div class="field" *ngIf="usuario.idUsuario == 0">
+          <label>Contraseña <span class="req">*</span></label>
+          <input name="contrasenia" [(ngModel)]="usuario.contrasenia" type="password"
+                 placeholder="••••••••" [required]="usuario.idUsuario == 0">
+        </div>
+      </div>
+
+      <div class="mb-3 form-check pt-2">
+          <input type="checkbox" [(ngModel)]="usuario.admin" name="admin" class="form-check-input" id="checkAdmin"/>
+          <label class="form-check-label fw-bold" for="checkAdmin">Otorgar Permisos de Administrador</label>               
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="form-footer">
+      <a routerLink="/app/usuarios" class="btn-back">Regresar</a>
+      <button type="submit" class="btn-submit" [disabled]="usuarioForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ usuario.idUsuario > 0 ? 'Guardar Cambios' : 'Crear Usuario' }}
+      </button>
+    </div>
+
+  </div>
+</form>

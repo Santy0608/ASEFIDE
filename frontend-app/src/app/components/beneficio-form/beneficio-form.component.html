@@ -1,0 +1,97 @@
+<!-- registrar-beneficio.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/beneficios">Beneficios</a>
+  <span class="sep">›</span>
+  <span class="current">{{ beneficio.idBeneficio > 0 ? 'Editar Beneficio' : 'Crear Beneficio' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 21C12 21 3 14 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-9 13-9 13z"/>
+    </svg>
+    {{ beneficio.idBeneficio > 0 ? 'Editar Beneficio' : 'Crear Beneficio' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ beneficio.idBeneficio > 0 ? 'actualizar el' : 'registrar un nuevo' }} beneficio en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(beneficioForm)" #beneficioForm="ngForm">
+  <div class="form-card">
+
+    <!-- Información del Beneficio -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 21C12 21 3 14 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-9 13-9 13z"/>
+          </svg>
+        </div>
+        <span class="section-title">Información del Beneficio</span>
+      </div>
+
+      <input type="hidden" name="idBeneficio" [(ngModel)]="beneficio.idBeneficio">
+
+      <div class="fields-grid">
+        <div class="field field-full">
+          <label>Nombre del Beneficio <span class="req">*</span></label>
+          <input name="nombre" [(ngModel)]="beneficio.nombreBeneficio"
+                 type="text" placeholder="Ej. Seguro de Vida Asociado" required>
+        </div>
+        <div class="field field-full">
+          <label>Descripción <span class="req">*</span></label>
+          <textarea name="descripcion" [(ngModel)]="beneficio.descripcion"
+                    placeholder="Describa brevemente el beneficio..." required></textarea>
+        </div>
+        <div class="field field-full">
+          <label>Imagen URL <span class="req">*</span> </label>
+          <input name="imagenUrl" [(ngModel)]="beneficio.imagenUrl"
+                 type="text" placeholder="Url de la imagen">
+        </div>
+      </div>
+    </div>
+
+    <!-- Clasificación -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h8m-8 6h16"/>
+          </svg>
+        </div>
+        <span class="section-title">Clasificación</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Categoría <span class="req">*</span></label>
+          <ng-select [items]="categorias" bindLabel="nombre" bindValue="idCategoria"
+                     placeholder="Seleccione una categoría" [(ngModel)]="beneficio.categoriaId"
+                     name="categoriaId" [searchable]="true" required>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="form-footer">
+      <a [routerLink]="['/app/beneficios']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="beneficioForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ beneficio.idBeneficio > 0 ? 'Guardar Cambios' : 'Crear Beneficio' }}
+      </button>
+    </div>
+
+  </div>
+</form>

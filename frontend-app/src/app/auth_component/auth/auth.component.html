@@ -1,0 +1,63 @@
+<!-- login.component.html -->
+<div class="login-wrapper">
+  <div class="bg-overlay"></div>
+
+  <div class="login-card">
+    <div class="text-center mb-3">
+      <img 
+        src="assets/images/image.png" 
+        alt="Asefide" 
+        class="login-logo"
+      />
+    </div>
+
+    <h4 class="welcome-title">Te damos la bienvenida</h4>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="mb-3">
+        <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+        <input
+          type="text"
+          id="nombreUsuario"
+          name="nombreUsuario"
+          class="form-control custom-input"
+          placeholder="Nombre de Usuario"
+          [(ngModel)]="loginRequest.nombreUsuario"
+          required
+          #nombreUsuarioRef="ngModel"
+        />
+        <div *ngIf="nombreUsuarioRef.invalid && nombreUsuarioRef.touched" class="text-danger">
+            El nombre de usuario es requerido
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="contrasenia" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          id="contrasenia"
+          name="contrasenia"
+          class="form-control custom-input"
+          placeholder="Contraseña"
+          [(ngModel)]="loginRequest.contrasenia"
+          required
+          #contraseniaRef="ngModel"
+        />
+        <div *ngIf="contraseniaRef.invalid && contraseniaRef.touched" class="text-danger">
+            La contraseña es requerida
+        </div>
+      </div>
+
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-login" [disabled]="loginForm.invalid">
+          Iniciar Sesión
+        </button>
+      </div>
+    </form>
+
+  <!--  <div class="text-center register-link">
+      <span>No tengo cuenta </span>
+      <a routerLink="/register" class="register-anchor">Registrarme</a>
+    </div> -->
+  </div>
+</div>

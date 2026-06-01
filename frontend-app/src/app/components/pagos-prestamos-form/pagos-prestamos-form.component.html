@@ -1,0 +1,100 @@
+<!-- registrar-pago-prestamo.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/pagos-prestamos">Pagos Préstamos</a>
+  <span class="sep">›</span>
+  <span class="current">{{ pago.idPago > 0 ? 'Actualizar Pago' : 'Registrar Pago' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="1" x2="12" y2="23"/>
+      <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+    </svg>
+    {{ pago.idPago > 0 ? 'Actualizar Pago' : 'Registrar Pago' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ pago.idPago > 0 ? 'actualizar el' : 'registrar un nuevo' }} pago de préstamo.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(pagoForm)" #pagoForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 16l-4-4 4-4M17 8l4 4-4 4"/><line x1="3" y1="12" x2="21" y2="12"/>
+          </svg>
+        </div>
+        <span class="section-title">Préstamo y Transacción</span>
+      </div>
+
+      <input type="hidden" name="idPago" [(ngModel)]="pago.idPago">
+
+      <div class="fields-grid">
+        <div class="field field-full">
+          <label>Préstamo <span class="req">*</span></label>
+          <ng-select [items]="prestamos" bindLabel="descripcionResumida" bindValue="idPrestamo"
+                     placeholder="Buscar préstamo por ID o usuario"
+                     [(ngModel)]="pago.prestamoId" name="prestamoId"
+                     [searchable]="true" (change)="onPrestamoChange(pago.prestamoId)" [virtualScroll]="true" required>
+          </ng-select>
+        </div>
+        <div class="field field-full">
+          <label>Transacción <span class="req">*</span></label>
+          <ng-select [items]="transaccionesFiltradas" bindLabel="descripcionResumida" bindValue="idTransaccion"
+                     placeholder="Seleccione transacción vinculada"
+                     [(ngModel)]="pago.transaccionId" name="transaccionId"
+                     [searchable]="true" [virtualScroll]="true" required>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+          </svg>
+        </div>
+        <span class="section-title">Monto y Fecha del Pago</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Monto Abonado <span class="req">*</span></label>
+          <input name="montoAbonado" [(ngModel)]="pago.montoAbonado"
+                 type="number" placeholder="Ej. 50000.00" step="0.01" required>
+        </div>
+        <div class="field">
+          <label>Fecha del Pago <span class="req">*</span></label>
+          <input name="fechaPago" [(ngModel)]="pago.fechaPago"
+                 type="date" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/pagos-prestamos']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="pagoForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ pago.idPago > 0 ? 'Guardar Cambios' : 'Registrar Pago' }}
+      </button>
+    </div>
+
+  </div>
+</form>

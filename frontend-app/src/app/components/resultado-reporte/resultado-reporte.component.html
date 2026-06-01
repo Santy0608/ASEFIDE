@@ -1,0 +1,80 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <span class="current">Resultados de Análisis</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      Gestión de Resultados Reportes
+    </div>
+    <div class="page-subtitle">Administración y clasificación de indicadores de desempeño del sistema.</div>    
+  </div>
+  <a [routerLink]="['/app/resultados-reportes/registrar-resultado-reporte']" class="btn-new">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Nuevo Resultado Reporte
+  </a>
+</div>
+
+@if (resultadosReportes.length > 0) {
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="text-center">Tipo Reporte</th>
+        <!--  <th class="text-center">Total Registros</th> -->
+          <th>Indicador / Métrica</th>
+          <th class="text-end">Valor de Métrica</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (resultado of resultadosReportes; track $index) {
+          <tr>
+            <td class="text-center">
+              {{ resultado.tipoReporte }}
+            </td>
+         <!--   <td class="text-center">
+              <span class="count-badge">{{ resultado.totalRegistros }}</span>
+            </td>  -->
+            <td>
+              <div class="nombre-cell">{{ resultado.metricaNombre }}</div>
+              <small class="text-muted">Indicador de sistema</small>
+            </td>
+            <td class="text-end font-mono">
+              <strong class="metric-value">{{ resultado.metricaValor }}</strong>
+            </td>
+            <td>
+              <div class="actions">
+                <button class="btn-action btn-edit" title="Editar" (click)="OnSelectedResultadoReporte(resultado)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="table-footer">{{ resultadosReportes.length }} métricas calculadas</div>
+    <app-paginator [paginator]="paginator" [url]="'/app/puestos-empresas/page'"/>
+  </div>
+} @else {
+  <div class="empty-state">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+      <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+      <line x1="1" y1="1" x2="23" y2="23"/>
+    </svg>
+    <p>No hay registros de resultados de reportes en el sistema.</p>
+  </div>
+}

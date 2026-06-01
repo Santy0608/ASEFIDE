@@ -1,0 +1,135 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <span class="current">Historial de Reportes</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+      Gestión de Reportes
+    </div>
+    <div class="page-subtitle">Administración y clasificación de transacciones para el inventario.</div>
+  </div>
+  <a [routerLink]="['/app/reportes/registrar-reporte']" class="btn-new">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    Nuevo Reporte
+  </a>
+
+  </div>
+
+  <div class="filter-bar">
+
+  <div class="filter-field">
+    <label>Fecha Inicio</label>
+    <input type="date" [(ngModel)]="fechaInicio">
+  </div>
+
+  <div class="filter-divider"></div>
+
+  <div class="filter-field">
+    <label>Fecha Final</label>
+    <input type="date" [(ngModel)]="fechaFinal">
+  </div>
+
+  <div class="filter-divider"></div>
+
+  <button class="btn-pdf" (click)="descargarPDF()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="12" y1="18" x2="12" y2="12"/>
+      <line x1="9" y1="15" x2="15" y2="15"/>
+    </svg>
+    Descargar PDF
+  </button>
+
+</div>
+
+<br/>
+
+@if (reportes.length > 0) {
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Reporte / Módulo</th>
+          <th class="text-center">Periodo</th>
+          <th class="text-center">Generación</th>
+          <th>Usuario</th>
+          <th class="text-end">Resumen</th>
+          <th class="text-center">Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (reporte of reportes; track $index) {
+          <tr>
+            <td>
+              <div class="nombre-cell">{{ reporte.nombreTipoReporte }}</div>
+              <small class="text-muted">{{ reporte.nombreModuloReporte }}</small>
+            </td>
+            <td class="text-center">
+              <div class="date-range">
+                <span>{{ reporte.fechaInicio }}</span>
+                <small class="d-block text-muted">al</small>
+                <span>{{ reporte.fechaFinal }}</span>
+              </div>
+            </td>
+            <td class="text-center">
+              <span class="date-tag">{{ reporte.fechaGeneracion }}</span>
+            </td>
+            <td>
+              <div class="user-profile">
+                <span class="user-name text-sm">{{ reporte.nombreUsuario }}</span>
+               <!-- <small class="text-muted">ID: {{ reporte.usuarioId }}</small> -->
+              </div>
+            </td>
+            <td class="text-end">
+              <div class="report-metrics">
+                <strong class="d-block">{{ reporte.resumenMontos | currency }}</strong>
+                <small class="badge bg-light text-dark">{{ reporte.totalRegistros }} reg.</small> 
+              </div>
+            </td>
+            <td class="text-center">
+              <span class="badge" [ngClass]="reporte.nombreEstado === 'Completado' ? 'badge-active' : 'badge-inactive'">
+                <span class="badge-dot"></span>{{ reporte.nombreEstado }}
+              </span>
+            </td>
+            <td>
+              <div class="actions">
+                <button class="btn-action btn-delete" title="Eliminar" (click)="eliminarReporte(reporte.idReporte!)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="table-footer">{{ reportes.length }} reportes procesados</div>
+    <app-paginator [paginator]="paginator" [url]="'/app/reportes/page'"/>
+  </div>
+} @else {
+  <div class="empty-state">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <line x1="1" y1="1" x2="23" y2="23"/>
+    </svg>
+    <p>No hay registros de transacciones en el sistema.</p>
+  </div>
+}

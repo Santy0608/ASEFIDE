@@ -1,0 +1,106 @@
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <span class="current">Direcciones</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      Gestión de Direcciones
+    </div>
+    <div class="page-subtitle">Administración y clasificación de ubicaciones de la asociación.</div>
+  </div>
+  <a [routerLink]="['/app/direcciones/insertar-direccion']" class="btn-new">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    Nueva Dirección
+  </a>
+</div>
+
+<div class="search-bar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+  <input type="text" [(ngModel)]="provinciaBuscar"
+         placeholder="Buscar dirección por provincia..."
+         (keydown.enter)="buscarProvincia()">
+  <button class="btn-clear" (click)="limpiarBusqueda()">
+    Limpiar
+  </button>
+  <button class="btn-search" (click)="buscarProvincia()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    Buscar
+  </button>
+</div>
+
+
+@if (direcciones.length > 0) {
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Provincia</th>
+          <th>Cantón</th>
+          <th>Distrito</th>
+          <th class="text-center">Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (direccion of direcciones; track $index) {
+          <tr>
+            <td>
+              <div class="nombre-cell">{{ direccion.provincia }}</div>
+            </td>
+            <td>{{ direccion.canton }}</td>
+            <td>
+              <span class="text-muted">{{ direccion.distrito }}</span>
+            </td>
+            <td class="text-center">
+              <span class="badge" [ngClass]="direccion.nombreEstado === 'ACTIVO' ? 'badge-active' : 'badge-inactive'">
+                <span class="badge-dot"></span>{{ direccion.nombreEstado }}
+              </span>
+            </td>
+            <td>
+              <div class="actions">
+                <button class="btn-action btn-edit" title="Editar" (click)="OnSelectedDireccion(direccion)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </button>
+                <button class="btn-action btn-delete" title="Eliminar" (click)="eliminarDireccion(direccion.idDireccion)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="table-footer">{{ direcciones.length }} direcciones en total</div>
+    <app-paginator [paginator]="paginator" [url]="'/app/direcciones/page'"/>
+  </div>
+} @else {
+  <div class="empty-state">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+      <line x1="1" y1="1" x2="23" y2="23"/>
+    </svg>
+    <p>No hay registros de direcciones en el sistema.</p>
+  </div>
+}

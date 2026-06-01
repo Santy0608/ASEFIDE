@@ -1,0 +1,63 @@
+<!-- registrar-puesto-empresa.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/puestos-empresas">Puestos de Empresa</a>
+  <span class="sep">›</span>
+  <span class="current">{{ puestoEmpresa.idPuestoEmpresa > 0 ? 'Editar Puesto Empresa' : 'Crear Puesto Empresa' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="7" width="20" height="14" rx="2"/>
+      <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/>
+    </svg>
+    {{ puestoEmpresa.idPuestoEmpresa > 0 ? 'Editar Puesto Empresa' : 'Crear Puesto Empresa' }}
+  </div>
+  <div class="page-subtitle">
+    Complete el campo para {{ puestoEmpresa.idPuestoEmpresa > 0 ? 'actualizar el' : 'registrar un nuevo' }} puesto de empresa.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(puestoEmpresaForm)" #puestoEmpresaForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos del Puesto</span>
+      </div>
+
+      <input type="hidden" name="idPuestoEmpresa" [(ngModel)]="puestoEmpresa.idPuestoEmpresa">
+
+      <div class="field">
+        <label>Nombre del Puesto <span class="req">*</span></label>
+        <input name="puestoEmpresa" [(ngModel)]="puestoEmpresa.puestoEmpresa"
+               type="text" placeholder="Ej. Gerente General" required>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/puestos-empresas']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="puestoEmpresaForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ puestoEmpresa.idPuestoEmpresa > 0 ? 'Guardar Cambios' : 'Crear Puesto Empresa' }}
+      </button>
+    </div>
+
+  </div>
+</form>

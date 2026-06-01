@@ -1,0 +1,104 @@
+<!-- registrar-transaccion.component.html -->
+
+<nav class="breadcrumb-nav">
+  <a routerLink="/home">Inicio</a>
+  <span class="sep">›</span>
+  <a routerLink="/transacciones">Transacciones</a>
+  <span class="sep">›</span>
+  <span class="current">{{ transaccion.idTransaccion > 0 ? 'Editar Transacción' : 'Crear Transacción' }}</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M7 16l-4-4 4-4M17 8l4 4-4 4"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+    </svg>
+    {{ transaccion.idTransaccion > 0 ? 'Editar Transacción' : 'Crear Transacción' }}
+  </div>
+  <div class="page-subtitle">
+    Complete los campos para {{ transaccion.idTransaccion > 0 ? 'actualizar la' : 'registrar una nueva' }} transacción en la asociación.
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit(transaccionForm)" #transaccionForm="ngForm">
+  <div class="form-card">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <span class="section-title">Datos de la Transacción</span>
+      </div>
+
+      <input type="hidden" name="idTransaccion" [(ngModel)]="transaccion.idTransaccion">
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Fecha Transacción <span class="req">*</span></label>
+          <input name="fechaTransaccion" [(ngModel)]="transaccion.fechaTransaccion"
+                 type="date" required>
+        </div>
+     <!--   <div class="field">
+          <label>Monto Total <span class="req">*</span></label>
+          <div class="input-suffix">
+            <input name="montoTotal" [(ngModel)]="transaccion.montoTotal"
+                   type="number" placeholder="Ej. 50000" required>
+            <span class="suffix">₡</span>
+          </div> 
+        </div>  -->
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="8" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5"/>
+            <circle cx="17" cy="9" r="2.5"/><path d="M22 20c0-2.5-2-4-5-4"/>
+          </svg>
+        </div>
+        <span class="section-title">Clasificación y Responsable</span>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Tipo Transacción <span class="req">*</span></label>
+          <ng-select [items]="tiposTransacciones" bindLabel="nombre" bindValue="idTipoTransaccion"
+                     placeholder="Seleccione un tipo" [(ngModel)]="transaccion.tipoTransaccionId"
+                     name="tipoTransaccionId" [searchable]="true" required>
+          </ng-select>
+        </div>
+        <div class="field">
+          <label>Usuario</label>
+          <ng-select [items]="usuarios" bindLabel="nombreCompleto" bindValue="idUsuario"
+                     placeholder="Seleccione un usuario" [(ngModel)]="transaccion.usuarioId"
+                     name="usuarioId" [searchable]="true"
+                     [virtualScroll]="true" [bufferAmount]="10">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a [routerLink]="['/app/transacciones']" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Regresar
+      </a>
+      <button type="submit" class="btn-submit" [disabled]="transaccionForm.invalid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ transaccion.idTransaccion > 0 ? 'Guardar Cambios' : 'Crear Transacción' }}
+      </button>
+    </div>
+
+  </div>
+</form>

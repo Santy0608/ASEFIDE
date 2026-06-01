@@ -1,0 +1,633 @@
+<!-- navbar.component.html -->
+ @if (admin){
+<nav class="navbar-wrap">
+
+  <!-- Fila superior: logo + usuario -->
+  <div class="navbar-top">
+    <a class="navbar-brand" [routerLink]="['/app/home']">
+      <img src="assets/images/asefide_logo_transparent.png" height="36" alt="Asefide">
+    </a>
+
+    <div class="navbar-user" [class.open]="userMenuOpen">
+
+  <div class="user-info">
+    <div class="user-name">{{ login.usuario?.nombreUsuario }}</div>
+    <div class="user-role">{{ login.usuario?.rolNombre }}</div>
+  </div>
+
+  <div class="user-avatar" [class.open]="userMenuOpen"
+       (click)="toggleUserMenu($event)">
+    {{ login.usuario?.iniciales }}
+  </div>
+
+  <div class="user-dropdown-panel" [class.open]="userMenuOpen">
+
+    <div class="user-dropdown-header">
+      <div class="user-dropdown-greeting">Sesión activa</div>
+      <div class="user-dropdown-name">{{ login.usuario?.nombreUsuario }}</div>
+      <div class="user-dropdown-role">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        {{ login.usuario?.rolNombre }}
+      </div>
+    </div>
+
+    <div class="user-dropdown-items">
+      <button class="user-dropdown-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Mi perfil
+      </button>
+      <div class="user-dropdown-divider"></div>
+      <button class="user-dropdown-item btn-logout" (click)="handlerLogout()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Cerrar sesión
+      </button>
+    </div>
+
+  </div>
+</div>
+  </div>
+
+  <!-- Fila inferior: links de navegación -->
+  <div class="navbar-links">
+
+    <!-- Usuarios con dropdown -->
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'usuarios'">
+      <button class="nav-dropdown-trigger" (click)="toggleDropdown('usuarios', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M22 20c0-2.5-2-4-5-4"/></svg>
+        Usuarios
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="dropdown-panel">
+        <a class="dropdown-item" [routerLink]="['/app/usuarios']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Listado de Usuarios</span>
+            <span class="dropdown-item-desc">Ver todos los usuarios</span>
+          </div>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" [routerLink]="['/app/telefonos']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Teléfonos</span>
+            <span class="dropdown-item-desc">Gestión de teléfonos</span>
+          </div>
+        </a>
+        <a class="dropdown-item" [routerLink]="['/app/correos']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Correos</span>
+            <span class="dropdown-item-desc">Gestión de correos</span>
+          </div>
+        </a>
+        <a class="dropdown-item" [routerLink]="['/app/roles']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Roles</span>
+            <span class="dropdown-item-desc">Gestión de roles</span>
+          </div>
+        </a>
+        <a class="dropdown-item" [routerLink]="['/app/datos-asociados']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Datos Asociados</span>
+            <span class="dropdown-item-desc">Información de asociados</span>
+          </div>
+        </a>
+        <a class="dropdown-item" [routerLink]="['/app/direcciones']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Direcciones</span>
+            <span class="dropdown-item-desc">Gestión de direcciones</span>
+          </div>
+        </a>
+        <a class="dropdown-item" [routerLink]="['/app/puestos-empresas']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Puestos de Empresa</span>
+            <span class="dropdown-item-desc">Gestión de puestos</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <a class="nav-link" [routerLink]="['/app/estados']" routerLinkActive="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      Estados
+    </a>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'actividades'">
+      <button class="nav-dropdown-trigger" (click)="toggleDropdown('actividades', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Actividades
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-panel">
+
+        <a class="dropdown-item" [routerLink]="['/app/actividades']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <path d="M9 16l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Listado de Actividades</span>
+            <span class="dropdown-item-desc">Ver todas las actividades</span>
+          </div>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" [routerLink]="['/app/usuarios']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="8" cy="8" r="3"/>
+              <path d="M2 20c0-3 3-5 6-5s6 2 6 5"/>
+              <circle cx="17" cy="9" r="2.5"/>
+              <path d="M22 20c0-2.5-2-4-5-4"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Usuarios</span>
+            <span class="dropdown-item-desc">Gestión de usuarios</span>
+          </div>
+        </a>
+
+        <a class="dropdown-item" [routerLink]="['/app/lugares-eventos']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Lugares de Evento</span>
+            <span class="dropdown-item-desc">Gestión de lugares</span>
+          </div>
+        </a>
+
+        <a class="dropdown-item" [routerLink]="['/app/inscripciones-actividades']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+              <rect x="8" y="2" width="8" height="4" rx="1"/>
+              <path d="M9 14l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Inscripciones Actividad</span>
+            <span class="dropdown-item-desc">Gestión de inscripciones</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'beneficios'">
+      <button class="nav-dropdown-trigger" (click)="toggleDropdown('beneficios', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 21C12 21 3 14 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-9 13-9 13z"/>
+        </svg>
+        Beneficios
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-panel">
+
+        <a class="dropdown-item" [routerLink]="['/app/beneficios']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 21C12 21 3 14 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-9 13-9 13z"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Listado de Beneficios</span>
+            <span class="dropdown-item-desc">Ver todos los beneficios</span>
+          </div>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" [routerLink]="['/app/categorias']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h8m-8 6h16"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Categorías</span>
+            <span class="dropdown-item-desc">Gestión de categorías</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'servicios'">
+      <button class="nav-dropdown-trigger" (click)="toggleDropdown('servicios', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="7" width="20" height="14" rx="2"/>
+          <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/>
+        </svg>
+        Servicios
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-panel">
+
+        <a class="dropdown-item" [routerLink]="['/app/servicios']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Listado de Servicios</span>
+            <span class="dropdown-item-desc">Ver todos los servicios</span>
+          </div>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" [routerLink]="['/app/categorias']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h8m-8 6h16"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Categorías</span>
+            <span class="dropdown-item-desc">Gestión de categorías</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'prestamos'">
+      <button class="nav-dropdown-trigger" (click)="toggleDropdown('prestamos', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"/>
+          <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+        </svg>
+        Préstamos
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-panel">
+
+        <a class="dropdown-item" [routerLink]="['/app/prestamos']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Listado de Préstamos</span>
+            <span class="dropdown-item-desc">Ver todos los préstamos</span>
+          </div>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" [routerLink]="['/app/pagos-prestamos']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="5" width="20" height="14" rx="2"/>
+              <line x1="2" y1="10" x2="22" y2="10"/>
+              <path d="M6 15h4"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Pagos Préstamos</span>
+            <span class="dropdown-item-desc">Gestión de pagos</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'transacciones'">
+      <button class="nav-dropdown-trigger" (click)="toggleDropdown('transacciones', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 16l-4-4 4-4M17 8l4 4-4 4"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+        </svg>
+        Transacciones
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-panel">
+
+        <a class="dropdown-item" [routerLink]="['/app/transacciones']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 16l-4-4 4-4M17 8l4 4-4 4"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Listado de Transacciones</span>
+            <span class="dropdown-item-desc">Ver todas las transacciones</span>
+          </div>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" [routerLink]="['/app/tipos-transacciones']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h8m-8 6h16"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Tipos de Transacción</span>
+            <span class="dropdown-item-desc">Gestión de tipos</span>
+          </div>
+        </a>
+
+        <a class="dropdown-item" [routerLink]="['/app/detalle-transaccion']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Detalle Transacción</span>
+            <span class="dropdown-item-desc">Gestión de detalles</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'cuentasAhorro'">
+      <button class="nav-dropdown-trigger" (click)="toggleDropdown('cuentasAhorro', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="5" width="20" height="14" rx="2"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        Cuentas Ahorro
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-panel">
+
+        <a class="dropdown-item" [routerLink]="['/app/cuentas-ahorros']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="5" width="20" height="14" rx="2"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Listado de Cuentas</span>
+            <span class="dropdown-item-desc">Ver todas las cuentas de ahorro</span>
+          </div>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" [routerLink]="['/app/tipos-ahorros']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h8m-8 6h16"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Tipos de Ahorro</span>
+            <span class="dropdown-item-desc">Gestión de tipos de ahorro</span>
+          </div>
+        </a>
+
+        <a class="dropdown-item" [routerLink]="['/app/movimientos-ahorro']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 16l-4-4 4-4M17 8l4 4-4 4"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Movimientos Ahorro</span>
+            <span class="dropdown-item-desc">Gestión de movimientos</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'reportes'">
+      <button class="nav-dropdown-trigger" (click)="toggleDropdown('reportes', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        Reportes
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-panel">
+
+        <a class="dropdown-item" [routerLink]="['/app/reportes']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Listado de Reportes</span>
+            <span class="dropdown-item-desc">Ver todos los reportes</span>
+          </div>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" [routerLink]="['/app/tipos-reportes']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h8m-8 6h16"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Tipos de Reporte</span>
+            <span class="dropdown-item-desc">Gestión de tipos de reporte</span>
+          </div>
+        </a>
+
+        <a class="dropdown-item" [routerLink]="['/app/modulo-reporte']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Módulo Reporte</span>
+            <span class="dropdown-item-desc">Gestión de módulos de reporte</span>
+          </div>
+        </a>
+
+        <a class="dropdown-item" [routerLink]="['/app/resultados-reportes']" (click)="closeDropdown()">
+          <div class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </div>
+          <div class="dropdown-item-text">
+            <span class="dropdown-item-label">Resultados Reporte</span>
+            <span class="dropdown-item-desc">Gestión de resultados</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</nav>
+ }
+
+ <!-- Menú Asociados -->
+@if (asociado){
+  <nav class="navbar-wrap">
+
+  <div class="navbar-top">
+    <a class="navbar-brand" [routerLink]="['/app/home']">
+      <img src="assets/images/image.png" height="36" alt="Asefide">
+    </a>
+
+    <div class="navbar-user" [class.open]="userMenuOpen">
+      <div class="user-info">
+        <div class="user-name">{{ login.usuario?.nombreUsuario }}</div>
+        <div class="user-role">{{ login.usuario?.rolNombre }}</div>
+      </div>
+
+      <div class="user-avatar" [class.open]="userMenuOpen" (click)="toggleUserMenu($event)">
+        {{ login.usuario?.iniciales }}
+      </div>
+
+      <div class="user-dropdown-panel" [class.open]="userMenuOpen">
+        <div class="user-dropdown-header">
+          <div class="user-dropdown-greeting">Sesión activa</div>
+          <div class="user-dropdown-name">{{ login.usuario?.nombreUsuario }}</div>
+          <div class="user-dropdown-role">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            {{ login.usuario?.rolNombre }}
+          </div>
+        </div>
+
+        <div class="user-dropdown-items">
+          <button class="user-dropdown-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Mi perfil
+          </button>
+          <div class="user-dropdown-divider"></div>
+          <button class="user-dropdown-item btn-logout" (click)="handlerLogout()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="navbar-links">
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'actividades'">
+      <button [routerLink]="['/app/actividades-asociados']" class="nav-dropdown-trigger" (click)="toggleDropdown('actividades', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Actividades
+      </button>
+    </div>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'beneficios'">
+      <button [routerLink]="['/app/beneficios-asociados']" class="nav-dropdown-trigger" (click)="toggleDropdown('beneficios', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 21C12 21 3 14 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-9 13-9 13z"/>
+        </svg>
+        Beneficios
+      </button>
+    </div>
+
+    <div class="nav-dropdown" [class.open]="dropdownOpen === 'servicios'">
+      <button [routerLink]="['/app/servicios-asociados']" class="nav-dropdown-trigger" (click)="toggleDropdown('servicios', $event)">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/>
+        </svg>
+        Servicios
+      </button>
+    </div>
+
+  </div>
+</nav>
+}
