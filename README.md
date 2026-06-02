@@ -187,7 +187,7 @@ ng serve
 ### PDF Reports
 <img width="1393" height="865" alt="ASEFIDE Report PDF" src="https://github.com/user-attachments/assets/cb2a673b-eb65-4801-981e-42616eba7213" />
 
-### USsers Module
+### Users Module
 <img width="1882" height="908" alt="ASEFIDE Users Module" src="https://github.com/user-attachments/assets/f0a9f365-d917-4248-9973-e11bb6786388" />
 
 ---
