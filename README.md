@@ -200,3 +200,6 @@ ng serve
 - **AI:** External AI API, Prompt Engineering, token caching, role-based chatbot
 - **PDF Generation:** iTextPDF
 - **Security:** Spring Security JWT, role-based access control, logical deletion
+
+💡 Final Note
+This project was developed as part of an academic course, simulating real-world enterprise requirements for a financial solidarity association, including full business logic, role-based access, and optimized database architecture.
