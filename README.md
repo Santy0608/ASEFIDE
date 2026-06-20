@@ -1,6 +1,6 @@
 # Enterprise Management System — ASEFIDE
 
-> **Academic Project** — Database Languages Course · Universidad Fidélitas
+> **Enterprise System** — Database Languages Course · Universidad Fidélitas
 > **Client:** Asociación Solidarista ASEFIDE (200+ active members)
 
 A complete enterprise management system designed and developed for a solidarity association, featuring full financial logic, AI-powered role-aware chatbot, advanced Oracle database architecture, and a dual-portal experience for administrators and associates.
